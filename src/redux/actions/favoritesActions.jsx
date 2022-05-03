@@ -4,10 +4,10 @@ export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const GET_FAVORITES = 'GET_FAVORITES'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const ERROR = 'ERROR';
-
+import { back_url } from './userActions';
 // Habilitada
 export const addfavProduct = ( email, productId ) => async (dispatch) => {
-  await axios.post('http://localhost:3001/usuario/favorites', { email, productId }).then(
+  await axios.post(`${back_url}usuario/favorites`, { email, productId }).then(
     (response) => {
       dispatch({
         type: ADD_PRODUCT,
@@ -25,7 +25,7 @@ export const addfavProduct = ( email, productId ) => async (dispatch) => {
 
 // Habilitada
 export const getFavorites = ( email ) => async (dispatch) => {
-  await axios.get(`http://localhost:3001/usuario/favorites/${email}`).then(
+  await axios.get(`${back_url}usuario/favorites/${email}`).then(
     (response) => {
       dispatch({
         type: GET_FAVORITES,
@@ -43,7 +43,7 @@ export const getFavorites = ( email ) => async (dispatch) => {
 
 // Habilitada
 export const deletefavProduct = ( email, productId ) => async (dispatch) => {
-  await axios.delete(`http://localhost:3001/usuario/shoppingcart/${email}/${productId}`).then(
+  await axios.delete(`${back_url}usuario/shoppingcart/${email}/${productId}`).then(
     (response) => {
       dispatch({
         type: REMOVE_PRODUCT,
