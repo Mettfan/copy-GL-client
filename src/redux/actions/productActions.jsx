@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { back_url } from './userActions';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT = 'GET_PRODUCT';
@@ -6,7 +7,6 @@ export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const ERROR = 'ERROR';
-import { back_url } from './userActions';
 // Habilitada
 export const getProducts = () => async (dispatch) => {
   await axios.get(`${back_url}productos`).then(

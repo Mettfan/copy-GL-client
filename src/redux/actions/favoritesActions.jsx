@@ -1,10 +1,10 @@
 import axios from 'axios';
+import { back_url } from './userActions';
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const GET_FAVORITES = 'GET_FAVORITES'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const ERROR = 'ERROR';
-import { back_url } from './userActions';
 // Habilitada
 export const addfavProduct = ( email, productId ) => async (dispatch) => {
   await axios.post(`${back_url}usuario/favorites`, { email, productId }).then(

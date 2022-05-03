@@ -1,11 +1,11 @@
 import axios from 'axios';
+import { back_url } from './userActions';
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const GET_SHOPPING = 'GET_SHOPPING'
 export const RETURN_PRODUCT = 'RETURN_PRODUCT'
 export const EMPTY_SHOPPING = 'EMPTY_SHOPPING'
 export const ERROR = 'ERROR';
-import { back_url } from './userActions';
 // Habilitada
 export const addProduct = ( email, productId ) => async (dispatch) => {
   await axios.post(`${back_url}usuario/shoppingcart`, { email, productId }).then(
