@@ -1,0 +1,14 @@
+.PagedDiv {
+    margin: 0;
+    display: flex;
+    width: 100%;
+}
+.PagedNav {
+    width: 100%;
+    list-style: none;
+}
+.ulPaged {       
+    display: inline-block;
+    width: 100%;
+    list-style: none;
+}

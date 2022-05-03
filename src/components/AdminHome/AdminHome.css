@@ -1,0 +1,80 @@
+.HomeAdmin-container {
+    background-color: aqua;
+    display: flex;
+    width: 100%;
+    /* height: calc(100vh - 5em); */
+    height: 100vh;
+}
+
+.Drawer__Container {
+    height: 100vh;
+    width: 700px;
+    background-color:#EBEBEB;
+    ;
+    /* [propiedad de transición] [duración de transición] [función de tiempo de transición] */
+    transition: all 0.5s ease-in-out;
+    transform: translate(calc(100vw + 500px));
+    /* position: absolute; */
+    position: fixed;
+    box-shadow: 5px 0px 18px rgb(0, 0, 0, 0);
+}
+
+.Drawer__Container--isOpen {
+    /* transformamos para que salfa a la pantalla con sus 200px */
+    transform: translate(calc(100vw - 700px));
+    box-shadow: unset;
+    box-shadow: 5px 8px 18px rgb(0, 0, 0, 0.7);
+}
+
+.admin-drawer {
+    background-color: #0E1428;
+    color: #EBEBEB;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    align-items: flex-start;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.link-home {
+    color: #EBEBEB;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.link-home:hover {
+    animation-name: selectAdmin;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: translate(0, 3px);
+    filter: drop-shadow(1px 1px 1px rgb(241, 150, 150))
+}
+
+.admin-info {
+    background-color: #EBEBEB;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+}
+
+.admin-drawer p {
+    padding-top: 15%;
+}
+
+@keyframes selectAdmin {
+
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, 3px);
+        filter: drop-shadow(1px 1px 1px rgb(241, 150, 150))
+    }
+
+}

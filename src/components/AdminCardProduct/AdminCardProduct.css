@@ -1,0 +1,108 @@
+.card-admin-container {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    border: 1px solid #0E1428;
+    background-color: #EBEBEB;
+    color: #0E1428;
+}
+
+.card-admin-1 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    height: 4em;
+    width: 100%;
+}
+
+.img-admin-card {
+    width: 10%;
+}
+
+.admin-panel-product-img {
+    width: 45px;
+}
+
+.card-admin-information-slim {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    align-items: center;
+}
+
+.card-admin-information-slim p {
+    font-size: 12px;
+}
+
+.buttons-admin-container {
+    display: flex;
+    flex-direction: row;
+    width: 15%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-admin-name {
+    width: 30%;
+}
+
+.card-admin-size {
+    width: 15%;
+}
+
+.card-admin-color {
+    width: 25%;
+}
+
+.card-admin-available {
+    width: 10%;
+    margin-top: 3px;
+    font-size: 10px;
+    color: grey;
+}
+
+.price-slim-card {
+    width: 25%;
+}
+
+.button-card-admin {
+    height: 20px;
+    width: 10px;
+    border: none;
+    background-color: transparent;
+}
+
+
+
+/* --------------------- */
+
+
+/* @media (max-width: 900px) {
+  .card-slim-information {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 584px) {
+  .quantity-stock {
+    padding: 5px;
+    margin: 0;
+  }
+
+  .price-slim {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 15px;
+  }
+
+  .img-slim {
+    width: 100%;
+  }
+
+  .card-slim-information {
+    font-size: 10px;
+  }
+} */

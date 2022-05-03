@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,900;1,700&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.ant-carousel .slick-dots li button {
+    opacity: 0.4;
+    padding: 5px 9px;
+    border-radius: 10%;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    opacity: 1;
+}
+
+.card-container {
+    position: relative;
+    text-align: center;
+}
+
+.top-left {
+    position: absolute;
+    top: -10px;
+    left: 1px;
+    background-color: rgb(211, 71, 71);
+    border-radius: 15px 1px 15px 1px;
+    padding: 2px 15px; 
+}
+
+.cardLanding {
+    width: 290px;
+    height: 390px;
+    border-radius: 5px;
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    transition: 0.4s ease-out;
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+    margin: 28px;
+}
+
+.cardLanding:hover {
+    transform: translateY(20px);
+}
+
+.cardLanding:hover:before {
+    opacity: 1;
+}
+
+.cardLanding:hover .info {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.cardLanding:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.808);
+    z-index: 2;
+    transition: 0.5s;
+    opacity: 0;
+    cursor: pointer;
+    
+}
+
+.cardLanding img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+}
+
+.cardLanding .info {
+    position: relative;
+    z-index: 3;
+    color: white;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.5s;
+    margin: 0 auto;
+}
+
+.cardLanding .info h1 {
+    margin: 1% auto;
+}
+
+.cardLanding .info p {
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-weight: 900;
+    margin: 5% auto;
+}
+
+.cardLanding .info button {
+    padding: 0.6rem;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.cardLanding .info button:hover {
+    background: dodgerblue;
+    color: white;
+}

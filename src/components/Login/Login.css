@@ -1,0 +1,115 @@
+.form-login-container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    background-color: #EBEBEB;
+}
+
+.button-password-recovery {
+    background-color: transparent;
+    border: none;
+    color: #EBEBEB;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.login-container {
+    background-color: #0E1428;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120%;
+    height: max-content;
+    max-width: 400px;
+    padding: 25px 30px;
+    border-radius: 3px;
+}
+
+.input-login {
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 32px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-label-login {
+    display: flex;
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-size: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.login-labelAndInput {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.title-login {
+    font-size: 25px;
+    font-weight: 800;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.register-btn {
+    margin: 5px;
+    padding: 5px;
+    height: 31px;
+    width: 16rem;
+    background-color: #E7BF50;
+    color: #0E1428;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.register-btn:hover {
+    background-color: #EBEBEB;
+}
+
+.form-group-login {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    font-size: 12px;
+}
+
+.recover-pwd {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 10px;
+    margin: 10px 0;
+}
+
+.input-Login {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #0E1428;
+    }
+
+@media (max-width: 584px) {
+    .login-labelAndInput {
+        width: 100%;
+    }
+}
+
+@media (max-width: 390px) {}

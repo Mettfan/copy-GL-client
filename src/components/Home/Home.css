@@ -1,0 +1,25 @@
+.containerCardsHome  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 95%;
+    gap: 2%;
+    margin: 5% auto;
+}
+
+.cardsProductsButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.cardsProductsButtons .cardsProductsButton {
+    font-size: 1.7rem;
+}
+
+.PagedHome {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
