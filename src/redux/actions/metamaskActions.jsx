@@ -11,7 +11,7 @@ export const ERROR = 'ERROR';
 export const addMetaOrder = (
     { payment_id, email, productList, status, status_detail, total, sendAddress }
 ) => async (dispatch) => {
-  await axios.post('http://localhost:3001/metamask/order', {
+  await axios.post(backurl + '/metamask/order', {
       payment_id,
       email,
       productList,
@@ -37,7 +37,7 @@ export const addMetaOrder = (
 
 // Habilitada
 export const getMetaOrders = () => async (dispatch) => {
-  await axios.get(`http://localhost:3001/metamask/orders`).then(
+  await axios.get(backurl + `/metamask/orders`).then(
     (response) => {
       dispatch({
         type: GET_META_ORDERS,
@@ -56,7 +56,7 @@ export const getMetaOrders = () => async (dispatch) => {
 export const getMetaUserOrders = (
     { email }
 ) => async (dispatch) => {
-  await axios.get(`http://localhost:3001/metamask/orders?email=${email}`).then(
+  await axios.get(backurl + `/metamask/orders?email=${email}`).then(
     (response) => {
       dispatch({
         type: GET_META_USER_ORDERS,
@@ -75,7 +75,7 @@ export const getMetaUserOrders = (
 export const putMetaOrder = (
     {payment_id, email, newStatus, statusDetail}
 ) => async (dispatch) => {
-  await axios.put(`http://localhost:3001/metamask/order`, {
+  await axios.put(backurl + `/metamask/order`, {
     payment_id, 
     email, 
     newStatus, 

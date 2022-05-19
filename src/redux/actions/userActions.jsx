@@ -15,7 +15,7 @@ export const ERROR = 'ERROR';
 // Habilitada
 export const getUsers = ({token}) => async (dispatch) => {
   console.log(token, 'action')
-  await axios.get('http://localhost:3001/usuarios', {headers: {'Authorization': 'Bearer ' + token}}).then(
+  await axios.get(backurl + '/usuarios', {headers: {'Authorization': 'Bearer ' + token}}).then(
     (response) => {
       dispatch({
         type: GET_USERS,
@@ -33,7 +33,7 @@ export const getUsers = ({token}) => async (dispatch) => {
 
 // Habilitada
 export const getUser = ( {email, token} ) => async ( dispatch ) => {  
-  await axios.get(`http://localhost:3001/usuario/email/${email}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(
+  await axios.get(backurl + `/usuario/email/${email}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(
     (response) => {
       dispatch({
         type: GET_USER,
@@ -53,7 +53,7 @@ export const getUser = ( {email, token} ) => async ( dispatch ) => {
 export const createUser = ({
   name, lastName, picture, born, dni, email, address, province, phone, postal, password,sendAddress, permission = 'user',
 }) => async (dispatch) => {
-  await axios.post('http://localhost:3001/usuario', {
+  await axios.post(backurl + '/usuario', {
     name,
     lastName,
     picture,
@@ -88,7 +88,7 @@ export const updateUser = ({
   name, lastName, picture, born, dni, email, address, province, phone, postal,sendAddress, token 
 }) => async (dispatch) => {
   // console.log(token, '>>action>>')
-  await axios.put('http://localhost:3001/usuario', {
+  await axios.put(backurl + '/usuario', {
     name,
     lastName,
     picture,
@@ -124,7 +124,7 @@ export const forgotPassword = ({
   email
 }) => async (dispatch) => {
   console.log('email', email)
-  await axios.post('http://localhost:3001/usuario/forgotpassword', {
+  await axios.post(backurl + '/usuario/forgotpassword', {
     email,
   }).then(
     (response) => {
@@ -148,7 +148,7 @@ export const updatePassword = ({
 }) => async (dispatch) => {
   // console.log(token, '<<action')
   // console.log('acton', password)
-  await axios.put('http://localhost:3001/usuario/password', {
+  await axios.put(backurl + '/usuario/password', {
     email,
     password
   },
@@ -176,7 +176,7 @@ export const updatePassword = ({
 //Habilitada
 export const userLogin = ({ email, password}) => async (dispatch) => {
 const cookies = new Cookies();
-  axios.post('http://localhost:3001/usuario/login',{
+  axios.post(backurl + '/usuario/login',{
       email,
       password,
   }).then( response => {
@@ -201,7 +201,7 @@ export const updateRol = ({
   permission,
   token 
 }) => async (dispatch) => {
-  await axios.put('http://localhost:3001/usuario/rol', { email, permission }, {
+  await axios.put(backurl + '/usuario/rol', { email, permission }, {
     headers: {
       'Authorization': 'Bearer ' + token
     }
@@ -226,7 +226,7 @@ export const userLogout = ({
   tokenSession 
 }) => async (dispatch) => {
   const cookies = new Cookies();
-  await axios.post('http://localhost:3001/usuario/logout', {email: cookies.get('user').email}, {
+  await axios.post(backurl + '/usuario/logout', {email: cookies.get('user').email}, {
     headers: {
       'Authorization': 'Bearer ' + tokenSession
     }

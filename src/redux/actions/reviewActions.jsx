@@ -12,7 +12,7 @@ export const ERROR = 'ERROR';
 export const postReview = ({
     email, productTitle, comment, rating, name, lastname, token
 }) => async (dispatch) => {
-  await axios.post('http://localhost:3001/usuario/review', {
+  await axios.post(backurl + '/usuario/review', {
       email,
       productTitle,
       comment,
@@ -37,7 +37,7 @@ export const postReview = ({
 
 // Habilitada
 export const getReviews = ({token}) => async (dispatch) => {
-  await axios.get('http://localhost:3001/usuario/reviews', {headers: {'Authorization': 'Bearer ' + token}}).then(
+  await axios.get(backurl + '/usuario/reviews', {headers: {'Authorization': 'Bearer ' + token}}).then(
     (response) => {
       dispatch({
         type: GET_REVIEWS,
@@ -57,7 +57,7 @@ export const getReviews = ({token}) => async (dispatch) => {
 export const getProductReviews = ({
     productId
 }) => async (dispatch) => {
-  await axios.get('http://localhost:3001/usuario/review', {
+  await axios.get(backurl + '/usuario/review', {
       productId
   }).then(
     (response) => {
@@ -79,7 +79,7 @@ export const getProductReviews = ({
 export const deleteUserReview = ({
     email, productId
 }) => async (dispatch) => {
-  await axios.delete('http://localhost:3001/usuario/review', {
+  await axios.delete(backurl + '/usuario/review', {
       email,
       productId
   }).then(
@@ -102,7 +102,7 @@ export const deleteUserReview = ({
 export const deleteReviewById = ({
     id
 }) => async (dispatch) => {
-  await axios.delete(`http://localhost:3001/usuario/reviewById/${id}`).then(
+  await axios.delete(backurl + `/usuario/reviewById/${id}`).then(
     (response) => {
       dispatch({
         type: DELETE_REVIEW_BY_ID,

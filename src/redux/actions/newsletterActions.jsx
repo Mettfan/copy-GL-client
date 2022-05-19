@@ -10,7 +10,7 @@ export const ERROR = 'ERROR';
 export const subscribeNewsletter = ({
     email
 }) => async (dispatch) => {
-  await axios.post('http://localhost:3001/usuario/newsletter', {
+  await axios.post(backurl + '/usuario/newsletter', {
       email
   }).then(
     (response) => {
@@ -32,7 +32,7 @@ export const subscribeNewsletter = ({
 export const subscribeFavorites = ({
     email
 }) => async (dispatch) => {
-  await axios.post('http://localhost:3001/usuario/newsletterfavorites', {
+  await axios.post(backurl + '/usuario/newsletterfavorites', {
       email
   }).then(
     (response) => {
@@ -53,7 +53,7 @@ export const subscribeFavorites = ({
 export const unsubscribeNewsletter = ({
     email
 }) => async (dispatch) => {
-  await axios.post(`http://localhost:3001/usuario/unsubscribe/${email}`).then(
+  await axios.post(backurl + `/usuario/unsubscribe/${email}`).then(
     (response) => {
       dispatch({
         type: UNSUBSCRIBE_NEWSLETTER,
