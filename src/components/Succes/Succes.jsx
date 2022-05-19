@@ -6,6 +6,7 @@ import './Succes.css'
 import { addMetaOrder } from '../../redux/actions/metamaskActions';
 import Cookies from 'universal-cookie';
 import { emptyShopping } from '../../redux/actions/shoppingActions'
+import { useNavigate } from "react-router-dom"
 
 function Succes() {
     const dispatch = useDispatch()
@@ -16,12 +17,14 @@ function Succes() {
     const user = cookies.get('user')?.user
     const productList = cookies.get('sendShopping')
     const totalShopping = cookies.get('totalShopping')
-    console.log('totalShopping', totalShopping)
+    const sendAddress = cookies.get('sendAddress')
+    let nav = useNavigate() 
+
 
     useEffect(() => {
         cookies.remove('shopping')
         dispatch(emptyShopping({ email: user?.email}));
-        dispatch(addMetaOrder({ payment_id: payment_id, email: user?.email, status: status, productList: productList, total: Number(totalShopping), sendAddress: {} }));
+        dispatch(addMetaOrder({ payment_id: payment_id, email: user?.email, status: status, productList: productList, total: Number(totalShopping), sendAddress: sendAddress }));
     },[])
 
     return (
@@ -31,7 +34,7 @@ function Succes() {
             <div className="container-1">
                 <p>Email: {user?.email}</p>
                 <p>Total: ${totalShopping}</p>
-                <p>Estado del pago: {status}</p>
+                <p>Estado de pedido: {status}</p>
             </div>
             <div className="title-list-succes">
                 <h3 style={{"margin-top": "20px"}}>Lista de productos:</h3>
@@ -56,6 +59,11 @@ function Succes() {
                 </div>
             </div>
             <h4 style={{"margin-top": "20px"}}>Gracias por confiar en nosotros!</h4>
+            <div className="shopping-cart-empty">
+                <button className='register-btn' onClick={() => nav('/miscompras')}>
+                    Mis compras
+                </button>                
+            </div>
         </div>
     </div>
     )

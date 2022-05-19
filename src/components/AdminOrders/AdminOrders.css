@@ -1,0 +1,58 @@
+/* parte de los top mas vendidos */
+.trabajo{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.matematicas{
+  width: 200px;
+  color: black;
+  font-weight: 600;
+}
+
+.matematicas p {
+  color: #EBEBEB;
+}
+
+.imagen_top{
+  height: 170px;
+  width: 150px;
+}
+
+.top_h2{
+  margin-bottom: 10px;
+  color: #4b4c52;
+}
+
+/* parte de las ordenes*/
+.container-articulos {
+  background-color: #0E1428;
+  padding: 5%;
+  margin: 0 5%;
+}
+
+.container_stats{
+  margin-top: -100px;
+  margin-bottom: 20px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+.container_productos {
+  width: 440px;
+  height: 105px;
+  background-color: #191c24;
+  border-radius: 5px;
+  color: aliceblue;
+  font-size: 20px;
+}
+.container_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icon {
+  font-size: 5rem;
+}
+  

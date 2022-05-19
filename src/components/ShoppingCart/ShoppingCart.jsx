@@ -13,9 +13,7 @@ export default function ShoppingCart ( ) {
     let cookie = new Cookies();
     const user = cookie.get('user')?.user
     const shoppingCookie = cookie.get('shopping')
-    console.log('userSend',user)
     const userEdit = useSelector(state => state.userReducer.usuario)
-    console.log('cambio', userEdit)
     const dispatch = useDispatch()
     const [select, setSelect] = useState("Retiro por la tienda");
     const shopping = useSelector( state => state.shoppingReducer)
@@ -46,11 +44,27 @@ export default function ShoppingCart ( ) {
         setSelect(e.target.value);
     }
 
+    const createSendAdress = () => {
+        cookie.set('sendAddress', 
+            {
+                name: user?.name,
+                lastName: user?.lastName,
+                email: user?.email,
+                phone: user?.phone,
+                address: user?.address || user?.sendAddress,
+                province: user?.province,
+                postal: user?.postal,
+            }
+        , { path: '/', expires: new Date(Date.now() + (3600 * 1000 * 24))}); //1 dia
+    }
+
     const handleEthereum = () => {
+        createSendAdress();
         nav('/meta/checkout')
     }
 
     const handleMercadoPago = () => {
+        createSendAdress();
         cookie.set('sendShopping', 
         shopping?.products
         , { path: '/', expires: new Date(Date.now() + (3600 * 1000 * 24))}); //1 dia
@@ -87,7 +101,6 @@ export default function ShoppingCart ( ) {
         price: total,
         quantity: shopping?.products.map((e) => e.UserProduct?.quantity)
     }
-    console.log('data', data)
 return (<div>
             {
                 shopping?.products.length || shoppingCookie?.length
@@ -96,7 +109,7 @@ return (<div>
                         <div className="into-container">
                             <div className="cart-container-1">
                                 <div className="title-container">
-                                    <h2>¿Cómo querés recibir o retirar tu compra?</h2>
+                                    <h2>¿Querés recibir o retirar tu compra?</h2>
                                     <select className="select-cart" onClick={(e) => handleSelect(e)}>
                                         <option>Seleccionar opción</option>
                                         <option>Retiro por la tienda</option>

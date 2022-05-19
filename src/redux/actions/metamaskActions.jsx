@@ -1,5 +1,6 @@
 import axios from 'axios';
-import backurl from '../backurl';
+import back_url from '../backurl';
+
 export const ADD_META_ORDER = 'ADD_META_ORDER';
 export const GET_META_ORDERS = 'GET_META_ORDERS';
 export const PUT_META_ORDER = 'PUT_META_ORDER';
@@ -11,7 +12,7 @@ export const ERROR = 'ERROR';
 export const addMetaOrder = (
     { payment_id, email, productList, status, status_detail, total, sendAddress }
 ) => async (dispatch) => {
-  await axios.post(backurl + '/metamask/order', {
+  await axios.post(back_url + '/metamask/order', {
       payment_id,
       email,
       productList,
@@ -37,7 +38,7 @@ export const addMetaOrder = (
 
 // Habilitada
 export const getMetaOrders = () => async (dispatch) => {
-  await axios.get(backurl + `/metamask/orders`).then(
+  await axios.get(back_url + `/metamask/orders`).then(
     (response) => {
       dispatch({
         type: GET_META_ORDERS,
@@ -56,7 +57,7 @@ export const getMetaOrders = () => async (dispatch) => {
 export const getMetaUserOrders = (
     { email }
 ) => async (dispatch) => {
-  await axios.get(backurl + `/metamask/orders?email=${email}`).then(
+  await axios.get(back_url + `/metamask/orders?email=${email}`).then(
     (response) => {
       dispatch({
         type: GET_META_USER_ORDERS,
@@ -75,7 +76,8 @@ export const getMetaUserOrders = (
 export const putMetaOrder = (
     {payment_id, email, newStatus, statusDetail}
 ) => async (dispatch) => {
-  await axios.put(backurl + `/metamask/order`, {
+  console.log(payment_id, email, newStatus, statusDetail);
+  await axios.put(back_url + `/metamask/order`, {
     payment_id, 
     email, 
     newStatus, 

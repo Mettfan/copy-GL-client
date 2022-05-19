@@ -129,11 +129,8 @@ const DetailProduct = () => {
     }
 
     const reviewsFilter = useSelector( (state) => state.reviewReducer.AllReviews.review)
-    console.log(reviewsFilter, 'reviews useSelector')
     //const reviesWithName = reviews?.filter(r => r.UserId) 
-    //console.log(reviesWithName, 'reviews with name')
     const reviewsOfTheProduct = reviewsFilter?.filter(r => r.ProductId == id)
-    console.log(reviewsOfTheProduct, 'reviews of the product')
 
 
 
@@ -282,7 +279,7 @@ const DetailProduct = () => {
                 
                 reviewsOfTheProduct?.map((review, i) => {
                 return (
-                  <Container style={{ marginTop: "5%", marginBottom: "5%" }}>
+                  <Container style={{ margin: "5% 0 0 0", margin: "0 5% 0 0" }}>
                 <Card>
                   <Card.Body>
                     <Card.Title>{review?.name} {review?.lastname}</Card.Title>

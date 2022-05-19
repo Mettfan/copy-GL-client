@@ -19,11 +19,9 @@ export default function EthPrice (props) {
 
     async function getPrice(){
         await axios.get(apiUrl).then( response => {
-            console.log(response.data.DISPLAY.ETH);
             let price = response.data.DISPLAY.ETH[actual_currency]?.PRICE
             setState({...state, price: price})
             cookie.set('ethInfo', {...cookie.get('ethInfo'), [actual_currency]: price})
-            console.log(price)
         })
     }
 
@@ -34,7 +32,7 @@ export default function EthPrice (props) {
     return (
     <>
     
-    <select className="selectCurrency" onChange={ (e) => changeCurrency(e)}>
+    <select onChange={ (e) => changeCurrency(e)}>
                         <option value={'USD'}>USD</option>
                         <option value={'ARS'}>ARS</option>
                         <option value={'MXN'}>MXN</option>

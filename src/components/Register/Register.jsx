@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../../redux/actions/userActions';
 
+
 const formSchema = Yup.object().shape({
     name: Yup.string()
         .required("Este campo es requerido")
@@ -64,6 +65,8 @@ const formSchema = Yup.object().shape({
 const formOptions = { resolver: yupResolver(formSchema) };
 
 const Register = () => {
+    
+
     const dispatch = useDispatch();
     const { register, formState: { errors }, handleSubmit, reset } = useForm(formOptions);
     const nav = useNavigate()
@@ -87,6 +90,7 @@ const Register = () => {
     };
 
     return (
+        <div className="container-register">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container-index">
                     <div className="form-container">
@@ -237,6 +241,8 @@ const Register = () => {
                     </div>
                 </div>
             </form>
+            
+        </div>
     );
 };
 

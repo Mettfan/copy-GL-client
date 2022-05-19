@@ -38,7 +38,6 @@ function ConnectMetamask(props) {
         if (!isRequesting){
 
             if(window.ethereum){
-                console.log(window.ethereum)
 
                 
                 try{
@@ -77,12 +76,10 @@ function ConnectMetamask(props) {
                     
                 }
                 catch (error) {
-                    console.log('Error connecting...' + error);
                     setState({...state, error: error.message})
                 }
             }
             else{
-                console.log('Install Metamask')
                 setState({...state, error: <a href={metaMaskXtensionURL} target = '_blank'>Install Metamask</a>})
             }
             
@@ -91,6 +88,7 @@ function ConnectMetamask(props) {
     
     // Se crea una transaccion a partir de los datos de Metamask
     async function transaction(eth){
+        console.log('cookie.get meta', cookie.get('productList'))
         try{
             !walletAddress && requestAccount()
             if (window.ethereum){
@@ -102,25 +100,23 @@ function ConnectMetamask(props) {
                     to: '0x4f966a88c0b741bb93287547df012c8101878832',
                     value: ethers.utils.parseEther(String(eth))
                 })
-                console.log('Transaction: ' + tx)
                 setState({...state, tx: tx})
                 localStorage.setItem('lastTx', tx.hash)
-                dispatch(addMetaOrder({
+            //     dispatch(addMetaOrder({
                 
-                payment_id: tx.hash, 
-                email: cookie.get('user').user.email,
-                productList: cookie.get('productList') || [{title: 'test product'}, {title: 'test product 2'}],
-                status: 'pending',
-                status_detail: 'pending',
-                total: cookie.get('shoppingTotal')  || 1000,
-                sendAddress: cookie.get('user')?.user?.sendAddress || null
-            }))
+            //     payment_id: tx.hash, 
+            //     email: cookie.get('user').user.email,
+            //     productList: cookie.get('productList') || [{title: 'test product'}, {title: 'test product 2'}],
+            //     status: 'pending',
+            //     status_detail: 'pending',
+            //     total: cookie.get('shoppingTotal')  || 1000,
+            //     sendAddress: cookie.get('user')?.user?.sendAddress || null
+            // }))
                 nav(`/success/?payment_id=${tx.hash}&email=${cookie.get('user').user.email}&status=pending&status_detail=pending`)
             }
 
         }
         catch ( error ) {
-            console.log(error);
             setState({...state, error: error.message})
         }
 

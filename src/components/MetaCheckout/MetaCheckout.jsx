@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import { useNavigate } from 'react-router-dom';
-
 import ConnectMetamask from "../ConnectMetamask/ConnectMetamask";
 import EthPrice from "../EthPrice/EthPrice";
 import './MetaCheckout.css';
@@ -13,7 +11,6 @@ let eth_test = 0.00001
 
 
 function MetaCheckout() {
-    let nav = useNavigate()
     let cookie = new Cookies()
     let ethInfo = cookie.get('ethInfo')
     let shoppingTotal = cookie.get('shoppingTotal') 
@@ -27,11 +24,9 @@ function MetaCheckout() {
 
     return (
       <>
+
         <div className="metaCheckoutBg">
-        {/* <div className="goShoppingButton"> */}
-        {/* </div> */}
             <div className="metaLogoCheckoutContainer">
-            <button className= 'goShoppingButton' onClick={()=> nav('/shoppingcart')}>Go to Shopping</button>
                 <img className="metaLogoCheckout" src={metaCover}></img>
             </div>
             <div className="ethereumLogoCheckoutContainer">

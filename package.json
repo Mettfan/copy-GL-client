@@ -29,6 +29,7 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.5.0",
+    "sweetalert2": "^11.4.14",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.11"

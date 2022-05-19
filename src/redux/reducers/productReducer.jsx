@@ -4,18 +4,22 @@ import {
   CREATE_PRODUCT,
   DELETE_PRODUCT,
   ERROR,
-  FILTER_BY_NAME
+  FILTER_BY_NAME,
+  GET_MOST_SELL
 } from '../actions/productActions';
 
 const initialState = {
   productos: [],
   productosFilter: [],
   producto: [],
+  productosTop: [],
   status: '',
 
 };
 function productReducer( state = initialState, action) {
   switch (action.type) {
+    case GET_MOST_SELL:
+      return { ...state, productosTop: action.payload}
     case GET_PRODUCTS:
       return { ...state, productos: action.payload, productosFilter: action.payload };
     case GET_PRODUCT:
@@ -36,7 +40,6 @@ function productReducer( state = initialState, action) {
     case FILTER_BY_NAME:
       const TodoslosProds = state.productosFilter
       const filterProdsName = TodoslosProds.filter(el => el.name.toLowerCase().includes(action.payload)) 
-      console.log(filterProdsName)
       return {
           ...state,
           productos: filterProdsName

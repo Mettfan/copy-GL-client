@@ -8,12 +8,12 @@ import Cookies from "universal-cookie";
 import { TiArrowBack } from 'react-icons/ti';
 import {Link} from 'react-router-dom'
 import { getUser } from "../../redux/actions/userActions";
+import {Modal, Button} from 'react-bootstrap'
 
 
 
 function validate(input){
     let errors = {};
-    console.log(errors)
     if(!/^[a-z A-Z]+$/.test(input.name)||input.name?.length<3 || input.name?.length>30){
         errors.name = "*Campo requerido";
     }
@@ -46,23 +46,14 @@ function validate(input){
 export default function AdminRegisterEdit  () {
     let cookie = new Cookies();
     const userEdit = cookie.get('user').user
-    const tokenUser = cookie.get('user')?.tokenSession
     const dispatch = useDispatch();
-
-    
-
-   
-   const nav = useNavigate();
+    const nav = useNavigate();
 
    //const userEdit = useSelector(state => state.userReducer.status.user);
   
 
    const[errors, setErrors] = useState({});
-
-
-
-    
-    const[input, setInput] = useState({
+   const[input, setInput] = useState({
         name: userEdit?.name,
         lastName: userEdit?.lastName,
         email: userEdit?.email,
@@ -74,6 +65,17 @@ export default function AdminRegisterEdit  () {
         phone: userEdit?.phone,
         
     })
+    const [modal, setModal] = useState("")
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
+    const modalEdit = (value) => {
+      setModal(value)
+      handleShow()
+    }
+  
 
 
 
@@ -92,17 +94,19 @@ function handlerOnChange (e){
             function onSubmit(e){
                 e.preventDefault();
                 if(!input.name || !input.lastName || !input.email || !input.dni|| !input.address|| !input.province  || !input.postal|| !input.phone  ){
-                alert("no completo todo el formulario!")}
+                 modalEdit("no completo todo el formulario!")
+                }
                 else{
-                dispatch(updateUser({...input, token: tokenUser}))
-                alert('Datos actualizados')
+                modalEdit('Datos actualizados')
+                dispatch(updateUser(input))
+                
                 setInput({
                     name:'',
                     lastName: '',
                     email: '',
                     dni: '',
-                    born: '',
                     phone: '',
+                    born: '',
                     address: '',
                     province: '',
                     postal: '',
@@ -228,14 +232,31 @@ function handlerOnChange (e){
                                 </div>
                                 </div>
                                 <div className="form-submit">
-                                <input
-                                type="submit"
-                                value="EDITAR"
-                                />
+                                <input 
+                                type="submit" value="Actualizar" />
                              </div>
                          </div>
                    </div>
             </form>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+            <Modal.Header closeButton>
+                <Modal.Title>Advertencia</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {modal}
+            </Modal.Body>
+            <Modal.Footer>
+                {/* <Button variant="secondary" onClick={handleClose}>
+                    completar
+                </Button> */}
+                <Button variant="primary" onClick={handleClose} >Continuar</Button>
+            </Modal.Footer>
+            </Modal>
 
         </div>
     );

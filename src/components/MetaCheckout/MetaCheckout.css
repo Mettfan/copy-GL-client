@@ -1,7 +1,5 @@
 .ethereumLogoCheckout{
     width: 50px;
-    position: relative;
-    bottom: 50px;
     animation-name: fadeIn ;
     animation-duration: 1.5s;
     animation-timing-function: linear;
@@ -9,8 +7,6 @@
 .ethereumLogoCheckoutContainer{
     padding: 20px;
     position: relative;
-    bottom: 50px;
-    /* margin-bottom: -50px; */
     animation-name: bounce ;
     animation-duration: 2s;
     animation-timing-function: linear;
@@ -20,8 +16,6 @@
     animation-name: fadeIn ;
     animation-duration: 0.5s;
     animation-timing-function: linear;
-    width: 23rem;
-    filter: drop-shadow(1px 1px 1px white);
 }
 .metaLogoCheckoutContainer{
     position: relative;
@@ -43,9 +37,7 @@
     margin: 20px;
 }
 .paymentContainer{
-
     position: relative;
-    bottom: 50px;
     animation-name: slideIn ;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -59,20 +51,9 @@
 
 }
 .feeDialog{
-    color: rgb(240, 214, 154);
+    color: rgb(177, 174, 174);
     font-size: small;
-    filter: drop-shadow(1px 1px 1px red);
 }
-.goShoppingButton{
-    background-color: pink;
-    position: fixed;
-    top: 60px;
-    padding: 5px;
-}
-.goShoppingButton:hover{
-    background-color: rgb(234, 79, 105);
-}
-
 @keyframes fadeIn {
     0%{ opacity: 0 }
     100%{ opacity: 1 }

@@ -1,9 +1,11 @@
 import { React } from 'react'
 import '../CardSlim/CardSlim.css';
 import { useDispatch } from "react-redux";
+import { useState } from 'react';
 import { deletefavProduct } from '../../redux/actions/favoritesActions';
 import { Link } from 'react-router-dom';
 import Cookies from "universal-cookie";
+import { Button, Modal } from 'react-bootstrap';
 
 function CardFavorites({ image, name, stock_by_size, price, discount, id, deleteProductFavorite }) {
     const dispatch = useDispatch()
@@ -30,6 +32,17 @@ function CardFavorites({ image, name, stock_by_size, price, discount, id, delete
     }
 
     const stock = stock_by_size.map((a)=> a.stock).reduce((a,b) => a + b, 0)
+
+    const [modal, setModal] = useState("")
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const modalDelete = (value) => {
+    setModal(value)
+    handleShow()
+  }
 
     return (
     <div className="card-slim-container">
@@ -66,9 +79,30 @@ function CardFavorites({ image, name, stock_by_size, price, discount, id, delete
             </div>
         </div>
     <div className="card-slim-2">
-        <button onClick={(e) => handleDeleteFav(e)} className="btn-delete-cart">Eliminar de Favoritos</button>
+    <button onClick={() => modalDelete("Está seguro de eliminar este producto?")} className="btn-delete-cart"  >{"Eliminar de Favoritos"}</button>
     </div>
+    <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Advertencia</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {modal}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button variant="primary" onClick={(e) => handleDeleteFav(e)} >Si</Button>
+        </Modal.Footer>
+      </Modal>   
+     
     </div>
+    
     )
 }
 

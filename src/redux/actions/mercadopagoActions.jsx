@@ -1,5 +1,5 @@
 import axios from 'axios';
-import backurl from '../backurl';
+import back_url from '../backurl';
 
 export const MERCADO_CHECKOUT = 'MERCADO_CHECKOUT';
 export const CHANGE_ORDER_STATE = 'CHANGE_ORDER_STATE';
@@ -9,15 +9,33 @@ export const GET_QUANTITY_SOLD = 'GET_QUANTITY_SOLD';
 export const GET_AMOUNT_SOLD = 'GET_AMOUNT_SOLD';
 export const GET_SUCCESS = 'GET_SUCCESS';
 export const SUCCESS = 'SUCCESS';
+export const GET_INFO_VIEW = 'GET_INFO_VIEW';
 
 export const ERROR = 'ERROR';
+
+export const infoView = ({id}) => async (dispatch) => {
+  
+  await axios.get(back_url + `/mercado/view/${id}`).then(
+    (response) => {
+      dispatch({
+        type: GET_INFO_VIEW,
+        payload: response.data,
+      });
+    },
+    (error) => {
+      dispatch({
+        type: ERROR,
+        payload: error.error,
+      });
+    },
+  );
+}
 
 // Habilitada
 export const mercadoCheckout = ({
     name, picture_url, size, price, quantity
 }) => async (dispatch) => {
-  console.log('name,picture_url, size, price, quantity', name,picture_url, size, price, quantity)
-  await axios.post(backurl + '/mercado/checkout', {
+  await axios.post(back_url + '/mercado/checkout', {
       name,
       picture_url,
       size,
@@ -41,12 +59,12 @@ export const mercadoCheckout = ({
 
 
 // Habilitada
-export const changeOrderState = ({
-    id, state
-}) => async (dispatch) => {
-  await axios.put(backurl + '/mercado/state', {
-      id,
-      state
+export const changeOrderState = (
+    data
+) => async (dispatch) => {
+  console.log(data);
+  await axios.put(back_url + '/mercado/state', {
+      data
   }).then(
     (response) => {
       dispatch({
@@ -65,7 +83,7 @@ export const changeOrderState = ({
 
 // Habilitada
 export const getPayments = () => async (dispatch) => {
-  await axios.get(backurl + '/mercado/payments').then(
+  await axios.get(back_url + '/mercado/payments').then(
     (response) => {
       dispatch({
         type: GET_PAYMENTS,
@@ -83,7 +101,7 @@ export const getPayments = () => async (dispatch) => {
 export const successMP = ({
   payment_id, email
 }) => async (dispatch) => {
-  await axios.get(backurl + `/mercado/success?payment_id=${payment_id}&email=${email}`).then(
+  await axios.get(back_url + `/mercado/success?payment_id=${payment_id}&email=${email}`).then(
     (response) => {
       dispatch({
         type: SUCCESS,
@@ -101,7 +119,7 @@ export const successMP = ({
 
 // Habilitada
 export const getUserPayments = (email) => async (dispatch) => {
-  await axios.get(backurl + `/mercado/history/${email}`).then(
+  await axios.get(back_url + `/mercado/history/${email}`).then(
     (response) => {
       dispatch({
         type: GET_USER_PAYMENTS,
@@ -119,7 +137,7 @@ export const getUserPayments = (email) => async (dispatch) => {
 
 // Habilitada
 export const getQuantitySold = () => async (dispatch) => {
-  await axios.get(backurl + `/mercado/amount`).then(
+  await axios.get(back_url + `/mercado/amount`).then(
     (response) => {
       dispatch({
         type: GET_QUANTITY_SOLD,
@@ -137,7 +155,7 @@ export const getQuantitySold = () => async (dispatch) => {
 
 // Habilitada
 export const getAmountSold = () => async (dispatch) => {
-  await axios.get(backurl + `/mercado/price`).then(
+  await axios.get(back_url + `/mercado/price`).then(
     (response) => {
       dispatch({
         type: GET_AMOUNT_SOLD,
@@ -154,7 +172,7 @@ export const getAmountSold = () => async (dispatch) => {
 };
 
 export const getSuccess = (payment_id) => async (dispatch) => {
-  await axios.get(backurl + `/mercado/success?payment_id=${payment_id}`).then(
+  await axios.get(back_url + `/mercado/success?payment_id=${payment_id}`).then(
     (response) => {
       dispatch({
         type: GET_SUCCESS,

@@ -26,7 +26,6 @@ function ConnectGoogle(props) {
         let user = res.profileObj
 
         // clg
-        console.log('Login Success:', user);
 
         // Seteamos las cookies necesarias 9+
         cookie.set('googleUser', user)
@@ -53,7 +52,6 @@ function ConnectGoogle(props) {
     };
 
     const onLoginFailure = (res) => {
-        console.log('Login Failed:', res);
     };
 
     // Lo que pasa cuando el usuario de desloguea

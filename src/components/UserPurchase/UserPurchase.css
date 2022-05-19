@@ -1,0 +1,34 @@
+.mis-compras-container {
+
+}
+
+.mis-compras-order {
+    display: flex;
+    border: 1px solid grey;
+    flex-direction: row;
+    border-radius: 3px;
+}
+
+.mis-compras-info {
+    display: flex;
+    /* height: 80%; */
+    flex-direction: column;
+    /* padding: 4% 2%; */
+    align-items: flex-start;
+    font-weight: bold;
+    color: #0E1428;
+}
+
+.mis-compras-products {
+    display: flex;
+    flex-direction: row;
+}
+
+.mis-compras-info p{
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.mis-compras-card {
+
+}

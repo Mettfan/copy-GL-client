@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import backurl from '../backurl';
+import back_url from '../backurl';
+
 export const GET_USERS = 'GET_USERS';
 export const GET_USER = 'GET_USER';
 export const CREATE_USER = 'CREATE_USER';
@@ -14,8 +15,7 @@ export const ERROR = 'ERROR';
 
 // Habilitada
 export const getUsers = ({token}) => async (dispatch) => {
-  console.log(token, 'action')
-  await axios.get(backurl + '/usuarios', {headers: {'Authorization': 'Bearer ' + token}}).then(
+  await axios.get(back_url + '/usuarios', {headers: {'Authorization': 'Bearer ' + token}}).then(
     (response) => {
       dispatch({
         type: GET_USERS,
@@ -33,7 +33,7 @@ export const getUsers = ({token}) => async (dispatch) => {
 
 // Habilitada
 export const getUser = ( {email, token} ) => async ( dispatch ) => {  
-  await axios.get(backurl + `/usuario/email/${email}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(
+  await axios.get(back_url + `/usuario/email/${email}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(
     (response) => {
       dispatch({
         type: GET_USER,
@@ -53,7 +53,7 @@ export const getUser = ( {email, token} ) => async ( dispatch ) => {
 export const createUser = ({
   name, lastName, picture, born, dni, email, address, province, phone, postal, password,sendAddress, permission = 'user',
 }) => async (dispatch) => {
-  await axios.post(backurl + '/usuario', {
+  await axios.post(back_url + '/usuario', {
     name,
     lastName,
     picture,
@@ -87,8 +87,7 @@ export const createUser = ({
 export const updateUser = ({
   name, lastName, picture, born, dni, email, address, province, phone, postal,sendAddress, token 
 }) => async (dispatch) => {
-  // console.log(token, '>>action>>')
-  await axios.put(backurl + '/usuario', {
+  await axios.put(back_url + '/usuario', {
     name,
     lastName,
     picture,
@@ -123,8 +122,7 @@ export const updateUser = ({
 export const forgotPassword = ({
   email
 }) => async (dispatch) => {
-  console.log('email', email)
-  await axios.post(backurl + '/usuario/forgotpassword', {
+  await axios.post(back_url + '/usuario/forgotpassword', {
     email,
   }).then(
     (response) => {
@@ -146,9 +144,7 @@ export const forgotPassword = ({
 export const updatePassword = ({
   email, password, token 
 }) => async (dispatch) => {
-  // console.log(token, '<<action')
-  // console.log('acton', password)
-  await axios.put(backurl + '/usuario/password', {
+  await axios.put(back_url + '/usuario/password', {
     email,
     password
   },
@@ -176,12 +172,11 @@ export const updatePassword = ({
 //Habilitada
 export const userLogin = ({ email, password}) => async (dispatch) => {
 const cookies = new Cookies();
-  axios.post(backurl + '/usuario/login',{
+  axios.post(back_url + '/usuario/login',{
       email,
       password,
   }).then( response => {
     cookies.set('user', response.data, { path: '/', expires: new Date(Date.now() + (3600 * 1000 * 24))}); //1 dia
-    console.log(cookies.get('user')); // Pacman
       dispatch({
           type: USER_LOGIN,
           payload: response.data
@@ -201,7 +196,7 @@ export const updateRol = ({
   permission,
   token 
 }) => async (dispatch) => {
-  await axios.put(backurl + '/usuario/rol', { email, permission }, {
+  await axios.put(back_url + '/usuario/rol', { email, permission }, {
     headers: {
       'Authorization': 'Bearer ' + token
     }
@@ -226,7 +221,7 @@ export const userLogout = ({
   tokenSession 
 }) => async (dispatch) => {
   const cookies = new Cookies();
-  await axios.post(backurl + '/usuario/logout', {email: cookies.get('user').email}, {
+  await axios.post(back_url + '/usuario/logout', {email: cookies.get('user').email}, {
     headers: {
       'Authorization': 'Bearer ' + tokenSession
     }
@@ -234,7 +229,6 @@ export const userLogout = ({
     (response) => {
     cookies.remove('user');
     localStorage.clear()
-    console.log(cookies.get('user')); // Pacman
       dispatch({
         type: USER_LOGOUT,
         payload: response.data,

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import backurl from '../backurl';
+import back_url from '../backurl';
+
 export const POST_REVIEW = 'POST_REVIEW';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_PRODUCT_REVIEWS = 'GET_PRODUCT_REVIEWS';
@@ -12,7 +13,7 @@ export const ERROR = 'ERROR';
 export const postReview = ({
     email, productTitle, comment, rating, name, lastname, token
 }) => async (dispatch) => {
-  await axios.post(backurl + '/usuario/review', {
+  await axios.post(back_url + '/usuario/review', {
       email,
       productTitle,
       comment,
@@ -37,7 +38,7 @@ export const postReview = ({
 
 // Habilitada
 export const getReviews = ({token}) => async (dispatch) => {
-  await axios.get(backurl + '/usuario/reviews', {headers: {'Authorization': 'Bearer ' + token}}).then(
+  await axios.get(back_url + '/usuario/reviews', {headers: {'Authorization': 'Bearer ' + token}}).then(
     (response) => {
       dispatch({
         type: GET_REVIEWS,
@@ -57,7 +58,7 @@ export const getReviews = ({token}) => async (dispatch) => {
 export const getProductReviews = ({
     productId
 }) => async (dispatch) => {
-  await axios.get(backurl + '/usuario/review', {
+  await axios.get(back_url + '/usuario/review', {
       productId
   }).then(
     (response) => {
@@ -79,7 +80,7 @@ export const getProductReviews = ({
 export const deleteUserReview = ({
     email, productId
 }) => async (dispatch) => {
-  await axios.delete(backurl + '/usuario/review', {
+  await axios.delete(back_url + '/usuario/review', {
       email,
       productId
   }).then(
@@ -102,7 +103,7 @@ export const deleteUserReview = ({
 export const deleteReviewById = ({
     id
 }) => async (dispatch) => {
-  await axios.delete(backurl + `/usuario/reviewById/${id}`).then(
+  await axios.delete(back_url + `/usuario/reviewById/${id}`).then(
     (response) => {
       dispatch({
         type: DELETE_REVIEW_BY_ID,

@@ -5,7 +5,6 @@ class MessageParser {
     }
   
     parse(message) {
-      console.log(message)
     }
   }
   

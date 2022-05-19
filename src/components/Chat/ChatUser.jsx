@@ -11,7 +11,6 @@ function ChatUser(props) {
   const [messages, setMessages] = useState([
     { name: 'Admin', body: 'Hola, por favor realice su consulta.' },
   ]);
-  console.log(userInfo, 'userInfo')
 
   useEffect(() => {
     if (uiMessagesRef.current) {

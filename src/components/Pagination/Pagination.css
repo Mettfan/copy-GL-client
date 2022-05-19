@@ -8,11 +8,18 @@
     list-style: none;
 }
 .ulPaged {       
-    display: inline-block;
     width: 100%;
+    display: flex;
     list-style: none;
+    justify-content: center;
 }
 
+.ulPaged div{
+    padding-left: 5px;
+}
+.ulPaged button {
+    margin-left: 5px;
+}
 .active {
     background-color: #4CAF50;
     color: white;

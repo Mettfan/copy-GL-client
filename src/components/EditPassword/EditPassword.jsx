@@ -8,11 +8,11 @@ import Cookies from "universal-cookie";
 import { TiArrowBack } from 'react-icons/ti';
 import {Link} from 'react-router-dom'
 import { getUser } from "../../redux/actions/userActions";
+import {Modal, Button} from 'react-bootstrap';
 
 
 function validate(input){
     let errors = {};
-    console.log(errors)
     
     if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(input.password)){
         errors.password = "*Campo requerido";
@@ -27,9 +27,7 @@ function validate(input){
 export default function EditPassword  () {
     let cookie = new Cookies();
     const userEdit = useSelector(state => state.userReducer.usuario)
-    // console.log('useselector',userEdit)
     const user = cookie.get('user')
-    // console.log('cookie',user)
     const tokenUser = cookie.get('user')?.tokenSession
 
     const nav = useNavigate();
@@ -42,6 +40,16 @@ export default function EditPassword  () {
         
          
      })
+     const [modal, setModal] = useState("")
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const modalEdit = (value) => {
+    setModal(value)
+    handleShow()
+  }
 
   useEffect(() => {
         dispatch(getUser({ email: user.email, password: user.password, token:tokenUser }))
@@ -62,10 +70,11 @@ export default function EditPassword  () {
     function onSubmit(e){
         e.preventDefault();
         if(!input.password ){
-        alert("no completo todo el formulario!")}
+        modalEdit("no completo todo el formulario!")}
         else{
         dispatch(updatePassword({...input, token: tokenUser}))
-        alert('Datos actualizados')
+       
+        modalEdit('Datos actualizados')
         setInput({
             password:'',
             email:''
@@ -125,6 +134,25 @@ export default function EditPassword  () {
                          </div>
                    </div>
             </form>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+            <Modal.Header closeButton>
+                <Modal.Title>Advertencia</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {modal}
+            </Modal.Body>
+            <Modal.Footer>
+                {/* <Button variant="secondary" onClick={handleClose}>
+                    completar
+                </Button> */}
+                <Button variant="primary" onClick={handleClose} >Continuar</Button>
+            </Modal.Footer>
+            </Modal>
 
         </div>
     );

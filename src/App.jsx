@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AdminCreate } from './components/AdminCreate/AdminCreate';
@@ -18,32 +18,27 @@ import EditSend from './components/EditSend/EditSend';
 import EditPassword from './components/EditPassword/EditPassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './components/Nav/NavigationBar';
-import ConnectMetamask from './components/ConnectMetamask/ConnectMetamask';
+// import ConnectMetamask from './components/ConnectMetamask/ConnectMetamask';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import Favorites from './components/Favorites/Favorites';
 import MapTienda from './components/MapTienda/MapTienda';
 import Cookies from 'universal-cookie';
-import { userLogin } from './redux/actions/userActions';
-import { useDispatch } from 'react-redux';
 import MetaCheckout from './components/MetaCheckout/MetaCheckout';
 import ChatBot from './components/Chatbot/Chatbot';
 import { NewPassword } from './components/NewPassword/NewPassword';
 import Succes from './components/Succes/Succes';
-import Success from './components/Success/Success'; //cual es?
 import Helpcenter from './components/Chat/Helpcenter';
 import Collapse from 'react-bootstrap/Collapse'
 import {BiChat} from 'react-icons/bi';
-import MisCompras from './components/MisCompras/MisCompras';
-import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+// import MisCompras from './components/MisCompras/MisCompras';
+import UserPurchase from './components/UserPurchase/UserPurchase';
 
 function App() {
 
   const cookies = new Cookies();
-  console.log(cookies.get('user'));
 
   
  const user = cookies.get('user');
-  console.log(cookies.get('user'));
   const [open, setOpen] = useState(false);
 
   return (
@@ -54,8 +49,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />}/>
 
-        <Route path="/miscompras" element={<MisCompras />} />
-        <Route path="/:email/success" element={<Success />} />
+        <Route path="/miscompras" element={<UserPurchase />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/user/newpassword" element={<NewPassword />} />
@@ -72,13 +66,10 @@ function App() {
         <Route path="/admin/editar" element={<AdminRegisterEdit></AdminRegisterEdit>} />
         <Route path='/mapa' element={<MapTienda></MapTienda>} />
         <Route path='/terminos' element={<Terminos></Terminos>} />
-        <Route path='/success' element={<Succes />} />
-        <Route path='/admindash' element={<AdminDashboard />} />
-        
+        <Route path='/success' element={<Succes />} />        
         <Route path="/meta/checkout" element={<MetaCheckout />} />
 
         <Route path="/chatbot" element={<ChatBot />} />
-        {/* <Route path="/success" element={<Success />} /> */}
 
 
       </Routes>

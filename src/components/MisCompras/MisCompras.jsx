@@ -2,18 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Accordion, Button, Card, Form, FormControl, InputGroup } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../redux/actions/productActions'
+import { getMetaUserOrders } from '../../redux/actions/metamaskActions';
 import { postReview } from '../../redux/actions/reviewActions'
 import './MisCompras.css'
 import Cookies from 'universal-cookie';
 
 function MisCompras() {
+    const cookies = new Cookies();
+    const user = cookies.get('user')?.user
     const dispatch = useDispatch()
-    const productos = useSelector( (state) => state.productReducer.productos)
+    const products = useSelector( state => state.metamaskReducer.status) 
 
     useEffect(() => {
-        dispatch(getProducts())
+      dispatch(getMetaUserOrders({ email: user?.email}))
+      dispatch(getProducts())
     },[])
-
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
@@ -23,18 +26,11 @@ function MisCompras() {
       productTitle: "",
     });
 
-    const cookies = new Cookies();
-    const user = cookies.get('user')?.user
-
     function handleSubmit(event) {
       event.preventDefault();
-      console.log(input, "submit");
-      console.log(rating, "submit");
-      console.log(cookies.get('user'), "cookies submit");
       
       dispatch(postReview({comment: input.description, rating: rating, productTitle: input.productTitle, email: cookies.get('user')?.email, name: cookies.get('user')?.user?.name, lastname: cookies.get('user')?.user?.lastName}))
 
-      console.log(input)
       setRating(0);
       setHover(0);
       setInput({
@@ -43,7 +39,6 @@ function MisCompras() {
       })
     }
 
-
     function handleChange(event) {
       setInput({
         ...input,
@@ -51,24 +46,23 @@ function MisCompras() {
       });
     }
 
-    console.log(productos, 'productos.name')
   return (
     <div style={{ justifyContent: 'center'}}>
 
     <h4>Mis compras</h4>
 
     {
-        productos?.slice(0,3).map( (producto) => {
+        products && products?.map( (producto, i) => {
             return (
               <div
                 key={producto.id}
                 style={{ width: "300px", margin: "2% auto" }}
               >
                 <Card>
-                  <Card.Img variant="top" src={producto.image} />
+                  {/* <Card.Img variant="top" src={producto.payment_id} /> */}
                   <Card.Body>
-                    <Card.Title>{producto.name}</Card.Title>
-                    <small className="text-muted">Compra realizada: FECHA</small>
+                    <Card.Title>{producto.id}</Card.Title>
+                    <small className="text-muted">Compra realizada: `${producto.createdAt}`</small>
                   </Card.Body>
                   <Card.Footer>
                     <small className="text-muted">

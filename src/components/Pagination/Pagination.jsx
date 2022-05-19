@@ -38,9 +38,9 @@ function Paged({prodsLength, prodPerPage, Page, currentPage, prodsFinal, setCurr
                 <ul className="ulPaged">
             <Button onClick={() => prev()}><GrPrevious/> </Button>
                     {
-                        pageNumber && pageNumber.map(num => (
-                            <>
-                            <Pagination onClick={()=> Page(num)} key={num} style={{display: 'inline-block', margin: '0 1%'}} >
+                        pageNumber && pageNumber.map((num, i) => (
+                            <div key={i}>
+                            <Pagination onClick={()=> Page(num)} style={{display: 'inline-block', margin: '0 1%'}} >
                                     {
                                 currentPage === pageNumber[num] ?
                                 <Pagination.Item active>{[num]}</Pagination.Item>
@@ -49,7 +49,7 @@ function Paged({prodsLength, prodPerPage, Page, currentPage, prodsFinal, setCurr
                                     }
                                      
                             </Pagination>
-                            </>
+                            </div>
                         ))
                     }
                     <Button onClick={() => next()}> <GrNext/> </Button>

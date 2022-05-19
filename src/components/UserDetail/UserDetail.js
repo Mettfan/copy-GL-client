@@ -12,7 +12,6 @@ export default function UserDetail() {
     const dispatch = useDispatch();
     let cookie = new Cookies();
     const user = cookie.get('user')?.user
-    console.log('usuario', user)
     const detailUser = useSelector(state => state.userReducer.usuario)
     const tokenUser = cookie.get('user')?.tokenSession
     let [state, setState] = useState({
@@ -21,8 +20,6 @@ export default function UserDetail() {
     let wallet = state.wallet
 
     useEffect(() => {
-        // console.log('tokenUser', tokenUser)
-        // console.log('user google', user?.email)
         dispatch(getUser({ email: user?.email, token: tokenUser}))
     },[])
 

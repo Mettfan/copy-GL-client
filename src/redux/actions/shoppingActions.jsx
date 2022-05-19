@@ -1,5 +1,6 @@
 import axios from 'axios';
-import backurl from '../backurl';
+import back_url from '../backurl';
+
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const GET_SHOPPING = 'GET_SHOPPING'
 export const RETURN_PRODUCT = 'RETURN_PRODUCT'
@@ -10,7 +11,7 @@ export const ERROR = 'ERROR';
 
 // Habilitada
 export const addProduct = ( {email, productId, productSize, productQuantity} ) => async (dispatch) => {
-  await axios.post(backurl + '/usuario/shoppingcart', { email, productId, productSize, productQuantity }).then(
+  await axios.post(back_url + '/usuario/shoppingcart', { email, productId, productSize, productQuantity }).then(
     (response) => {
       dispatch({
         type: ADD_PRODUCT,
@@ -28,7 +29,7 @@ export const addProduct = ( {email, productId, productSize, productQuantity} ) =
 
 // Habilitada
 export const putProduct = ( {email, productId, productQuantity} ) => async (dispatch) => {
-  await axios.put(backurl + '/usuario/shoppingcart', { email, productId, productQuantity }).then(
+  await axios.put(back_url + '/usuario/shoppingcart', { email, productId, productQuantity }).then(
     (response) => {
       dispatch({
         type: ADD_PRODUCT,
@@ -46,7 +47,7 @@ export const putProduct = ( {email, productId, productQuantity} ) => async (disp
 
 // Habilitada
 export const getShopping = ( {email} ) => async (dispatch) => {
-  await axios.get(backurl + `/usuario/shoppingcart/${email}`).then(
+  await axios.get(back_url + `/usuario/shoppingcart/${email}`).then(
     (response) => {
       dispatch({
         type: GET_SHOPPING,
@@ -64,7 +65,7 @@ export const getShopping = ( {email} ) => async (dispatch) => {
 
 // Habilitada
 export const returnProduct = ( {email, productId} ) => async (dispatch) => {
-  await axios.delete(backurl + `/usuario/shoppingcart/${email}/${productId}`).then(
+  await axios.delete(back_url + `/usuario/shoppingcart/${email}/${productId}`).then(
     (response) => {
       dispatch({
         type: RETURN_PRODUCT,
@@ -82,7 +83,7 @@ export const returnProduct = ( {email, productId} ) => async (dispatch) => {
 
 // Habilitada
 export const emptyShopping = ( {email} ) => async (dispatch) => {
-  await axios.delete(backurl + `/usuario/deleteshoppingcart/${email}`).then(
+  await axios.delete(back_url + `/usuario/deleteshoppingcart/${email}`).then(
     (response) => {
       dispatch({
         type: EMPTY_SHOPPING,

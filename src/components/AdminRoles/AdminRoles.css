@@ -91,3 +91,21 @@
     outline: none;
     transition: all 0.3s ease;
 }
+
+.register-btn-admin-roles {
+    margin: 5px;
+    padding: 5px;
+    height: 31px;
+    width: 16rem;
+    background-color: #E7BF50;
+    color: #0E1428;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.register-btn-admin-roles:hover {
+    background-color: #0E1428;
+    color: #EBEBEB;
+}

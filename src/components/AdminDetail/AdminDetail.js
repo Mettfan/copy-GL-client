@@ -19,8 +19,6 @@ export default function AdminDetail() {
     
 
     useEffect(() => {
-        // console.log('tokenUser', tokenUser)
-        // console.log('user google', user.email)
         dispatch(getUser({ email: user.email, token: tokenUser}))
     },[])
 

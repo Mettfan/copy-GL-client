@@ -10,7 +10,6 @@
     animation-duration: 0.2s;
     animation-timing-function: linear;
     transform: scale(1);
-    color: white;
     /* background-color: rgb(13, 11, 33); */
     /* margin-left: 10px; */
 }
@@ -35,16 +34,6 @@
 
 .payMetaButton{
     padding: 10px;
-    color: black;
-    background-color: #E7BF50;
-    /* margin-bottom:  */
-    position: relative;
-    bottom: 10px;
-}
-.payMetaButton:hover{
-    background-color: black;
-    filter: drop-shadow(1px 1px 1px white);
-    color: white;
 }
 
 /* .logoutMetaButton{
