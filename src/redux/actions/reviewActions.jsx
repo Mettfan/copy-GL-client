@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import backurl from '../backurl';
 export const POST_REVIEW = 'POST_REVIEW';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_PRODUCT_REVIEWS = 'GET_PRODUCT_REVIEWS';
