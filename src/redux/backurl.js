@@ -1,3 +1,3 @@
-let back_url = 'https://genderless-pg.herokuapp.com'
+let back_url = 'https://gl-final.herokuapp.com'
 
 export default back_url
