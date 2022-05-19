@@ -7,14 +7,6 @@
     height: 25px;
 }
 
-.btn-quit-drawer {
-    padding: 7px 12px;
-    border: none;
-    border-radius: 20px;
-    margin: 4px;
-    font-weight: bold;
-}
-
 @media (max-width: 584px) {
     .input-create-stock {
         width: 65px;

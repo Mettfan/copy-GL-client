@@ -1,0 +1,42 @@
+.container-map {
+    
+    padding: 10px; 
+     
+     border: 2px solid black; 
+     float: left; 
+     margin-top: 80px;
+    margin-left: 30px;
+     background-color: #f5f5f5;
+     border-radius: 5px;
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tienda-container {
+    
+    margin-top: 100px;
+    width:27% ;
+    float:left;
+    margin-left: 20px;
+   
+   
+   
+        }
+        
+    .envios-container {
+       margin-top: 50px;
+       margin-right: 20px;
+       width: 27%;
+       float: right;
+   
+       
+   }      
+    
+.container-ppal {
+   height: calc(100vh - 12em);
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   align-content: center;
+   justify-content: space-evenly;
+   align-items: center;
+}

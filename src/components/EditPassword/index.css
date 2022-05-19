@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-pass-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;   
+  background-color: #EBEBEB;
+  justify-content: center;
+}
+
+.title-Auth0 {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 800;
+  position: relative;
+}
+
+.register-subtitle {
+  font-size: 8px;
+}
+
+.form-container-pass {
+  display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 390px;
+    width: 80%;
+    background-color: #0E1428;
+    color: white;
+    padding: 25px 30px;
+    border-radius: 3px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.form-container .title {
+  font-size: 25px;
+  font-weight: 800;
+  position: relative;
+}
+
+.form-group-one {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.labelAndInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 8px 0 4px 0;
+  width: calc(100% / 2 - 20px);
+}
+
+.input-register {
+  border-radius: 3px;
+  border: 1px solid black;
+  height: 27px;
+  width: 100%;
+  padding-left: 15px;
+  font-size: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+  color: black;
+}
+
+.input-register:focus {
+  outline: 0;
+  border-color: aqua;
+}
+
+.title-volver {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.input-register::-webkit-outer-spin-button,
+.input-register::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-label {
+  display: block;
+  padding-bottom: 5px;
+  font-weight: 600;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.gender-details {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.gender {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+form .gender-details .gender-title {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+form .gender-details .category {
+  display: flex;
+  width: 60%;
+  margin: 14px 0;
+  justify-content: space-between;
+}
+
+.gender-details .category label {
+  display: flex;
+  align-items: center;
+}
+
+.gender-details .category .dot {
+  height: 15px;
+  width: 15px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#dot-1:checked~.category label .one,
+#dot-2:checked~.category label .two,
+#dot-3:checked~.category label .three {
+  border-color: #d9d9d9;
+  background-color: black;
+}
+
+form input[type="radio"] {
+  display: none;
+}
+
+form .form-submit {
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+}
+
+form .form-submit input {
+  height: 100%;
+  width: 40%;
+  background-color: #E7BF50;
+  color: #0E1428;
+  border-radius: 3px;
+  font-weight: 1000;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.form-register-errors {
+  color: red;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.TyC {
+  margin: 10px 0; 
+  font-weight: bold;
+}
+
+form .form-submit input:hover {
+  background-color: #EBEBEB;
+}
+
+@media (max-width: 584px) {
+  .form-container {
+      max-width: 100%;
+  }
+
+  .labelAndInput {
+      margin-bottom: 4px;
+      width: 100%;
+  }
+
+  form .gender-details .category {
+      width: 100%;
+  }
+
+  .form-group-one {
+      overflow-y: scroll;
+      max-height: 300px;
+  }
+
+  .form-group-one::-webkit-scrollbar {
+      width: 0;
+  }
+
+  .gender-details {
+      padding: 8px 0 0 0;
+  }
+
+  form .form-submit {
+      margin: 0;
+  }
+}
+
+@media (max-width: 390px) {
+  form .form-submit input {
+      font-size: 8px;
+  }
+
+  form .gender-details .category {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .gender-details .category label {
+      padding: 2px;
+  }
+}
+
+.login-button {
+  text-decoration: none;
+}
+
+.title-password{
+  position: absolute;
+}

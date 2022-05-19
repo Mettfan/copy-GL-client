@@ -23,3 +23,35 @@
     flex-direction: row;
     width: 100%;
 }
+
+.alertFalse {
+    display: none;
+}
+
+.alertTrue, .spinnerFalse {
+    display: block;
+}
+
+.card-container {
+    position: relative;
+    text-align: center;
+}
+
+.top-left {
+    position: absolute;
+    top: -30px !important;
+    left: 10px;
+    background-color: rgb(211, 71, 71);
+    border-radius: 15px 1px 15px 1px;
+    padding: 2px 15px; 
+}
+
+.precioTachado {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.precioFinal {
+    display: block;
+    font-weight: 500;
+}

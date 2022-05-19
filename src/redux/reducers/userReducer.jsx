@@ -7,6 +7,7 @@ const initialState = {
   token: ''
 };
 function userReducer( state = initialState, action) {
+  console.log('action.payload user', action.payload)
   switch (action.type) {
     case GET_USERS:
       return { ...state, usuarios: action.payload };
@@ -19,9 +20,9 @@ function userReducer( state = initialState, action) {
     case UPDATE_PASSWORD:
       return { ...state, status: action.payload };
     case USER_LOGIN:
-      return { ...state, status: action.payload, usuario: action.payload?.user || null, token: action.payload?.tokenSession || null };
+      return { ...state, status: action.payload, usuario: action.payload || null, token: action.payload?.tokenSession || null };
     case USER_LOGOUT:
-      return { ...state, status: action.payload, usuario: action.payload?.user || null, token: action.payload?.tokenSession || null };
+      return { ...state, status: action.payload, usuario: action.payload || null, token: action.payload?.tokenSession || null };
     case UPDATE_USER_ROL:
       return { ...state, status: action.payload };
     case FORGOT_PASSWORD:

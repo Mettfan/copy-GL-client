@@ -1,0 +1,57 @@
+
+.container-admin-detail {
+  display: flex;
+  align-items: center;
+  
+  justify-content: center;
+  background-color: #EBEBEB;
+    height: 100vh;
+  
+ 
+}
+
+.profile-container-admin {
+
+  background-color: #0E1428;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120%;
+    height: max-content;
+    max-width: 400px;
+    padding: 25px 30px;
+    border-radius: 3px;
+  
+ 
+  
+}
+
+
+.userImgOnprofile{
+    border-radius: 100%;
+    width: 120px;
+    height: 120px;
+}
+
+.loginbtn{
+  margin: 5px;
+  padding: 5px;
+  height: 31px;
+  width: 16rem;
+  background-color: #E7BF50;
+  color: #0E1428;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.logoutbtn{
+   border-radius: 5px;
+    border: none;
+    width: 100px;
+    background-color: pink;
+    padding: 3px 3px 3px 3px;
+    cursor: pointer;
+    margin: 5px;
+}

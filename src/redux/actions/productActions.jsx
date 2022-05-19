@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { back_url } from './userActions';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT = 'GET_PRODUCT';
@@ -7,9 +6,14 @@ export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const ERROR = 'ERROR';
+/*****
+ * FILTROS
+ *****/
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+
 // Habilitada
 export const getProducts = () => async (dispatch) => {
-  await axios.get(`${back_url}productos`).then(
+  await axios.get('http://localhost:3001/productos').then(
     (response) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -27,7 +31,7 @@ export const getProducts = () => async (dispatch) => {
 
 // No Habilitada
 export const getProduct = (id) => async (dispatch) => {
-  await axios.get(`${back_url}productos/id/${id}`).then(
+  await axios.get(`http://localhost:3001/productos/id/${id}`).then(
     (response) => {
       dispatch({
         type: GET_PRODUCT,
@@ -44,8 +48,11 @@ export const getProduct = (id) => async (dispatch) => {
 };
 
 // Habilitada
-export const createProduct = ({ name, description, stock_by_size, price, discount, image, brand, disabled, category,}) => async (dispatch) => {
-  await axios.post(`${back_url}productos`, {
+
+export const createProduct = ({ name, description, stock_by_size, price, discount, image, brand, disabled, category, token}) => async (dispatch) => {
+  // console.log(token, '<<action token')
+
+  await axios.post('http://localhost:3001/productos', {
     name,
     description,
     stock_by_size,
@@ -55,7 +62,12 @@ export const createProduct = ({ name, description, stock_by_size, price, discoun
     brand,
     disabled,
     category,
-  }).then((response) => {
+    
+  },
+  {headers: {
+    'Authorization': 'Bearer ' + token
+  }}
+  ).then((response) => {
     dispatch({
       type: CREATE_PRODUCT,
       payload: response.data,
@@ -66,7 +78,7 @@ export const createProduct = ({ name, description, stock_by_size, price, discoun
 
 // No Habilitada
 export const deleteProduct = (id) => async (dispatch) => {
-  await axios.delete(`${back_url}producto/${id}`).then(
+  await axios.delete(`http://localhost:3001/producto/${id}`).then(
     (response) => {
       dispatch({
         type: DELETE_PRODUCT,
@@ -83,13 +95,17 @@ export const deleteProduct = (id) => async (dispatch) => {
 };
 
 // Habilitada
-export const editProduct = (sendData) => async (dispatch) => {
-  await axios.put(`${back_url}productos/putproduct`, sendData).then(
+export const editProduct = ({sendData, token}) => async (dispatch) => {
+  // console.log(sendData, '<<action>>')
+  await axios.put('http://localhost:3001/productos/putproduct', sendData,{headers: {
+    'Authorization': 'Bearer ' + token
+  }}).then(
       (response) => {
         dispatch({
           type: EDIT_PRODUCT,
           payload: response.data,
         });
+        
       },
       (error) => {
         dispatch({
@@ -104,26 +120,40 @@ export const editProduct = (sendData) => async (dispatch) => {
 // FILTROS:
 
 // Prueba...
-export const getProductsbyName = (name) => async (dispatch) => {
-  await axios.get(`${back_url}productos/name/${name}`).then(
-    (response) => {
-      dispatch({
-        type: GET_PRODUCTS,
-        payload: response.data,
-      });
-    },
-    (error) => {
-      dispatch({
-        type: ERROR,
-        payload: error.error,
-      });
-    },
-  );
-};
+//export const getProductsbyName = (name) => async (dispatch) => {
+//  await axios.get(`http://localhost:3001/productos/name/${name}`).then(
+//    (response) => {
+//      dispatch({
+//        type: GET_PRODUCTS,
+//        payload: response.data,
+//      });
+//    },
+//    (error) => {
+//      dispatch({
+//        type: ERROR,
+//        payload: error.error,
+//      });
+//    },
+//  );
+//};
+
+export function getProductsbyName(payload) {
+  return async function (dispatch) {
+      try {
+          dispatch ({
+              type: FILTER_BY_NAME,
+              payload,
+          });
+      }
+      catch (error) {
+          console.log(error)
+      }    
+  }
+}
 
 // Prueba...
 export const getProductsbyBrand = (brand) => async (dispatch) => {
-  await axios.get(`${back_url}productos/marca/${brand}`).then(
+  await axios.get(`http://localhost:3001/productos/marca/${brand}`).then(
     (response) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -142,7 +172,7 @@ export const getProductsbyBrand = (brand) => async (dispatch) => {
 // Prueba...
 // Usar ASC O DESC en order
 export const getProductsbyPrice = (order) => async (dispatch) => {
-  await axios.get(`${back_url}productos/price/${order}`).then(
+  await axios.get(`http://localhost:3001/productos/price/${order}`).then(
     (response) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -160,7 +190,7 @@ export const getProductsbyPrice = (order) => async (dispatch) => {
 
 // Prueba...
 export const getProductsbyCategory = (category) => async (dispatch) => {
-  await axios.get(`${back_url}productos/categoria/${category}`).then(
+  await axios.get(`http://localhost:3001/productos/categoria/${category}`).then(
     (response) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -178,7 +208,7 @@ export const getProductsbyCategory = (category) => async (dispatch) => {
 
 // Prueba...
 export const getDiscounts = () => async (dispatch) => {
-  await axios.get(`${back_url}productos/discount`).then(
+  await axios.get(`http://localhost:3001/productos/discount`).then(
     (response) => {
       dispatch({
         type: GET_PRODUCTS,

@@ -3,6 +3,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../../redux/actions/userActions';
+import  ConnectGoogle  from '../ConnectGoogle/ConnectGoogle'
+import { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
+import { addProduct } from '../../redux/actions/shoppingActions';
+import { addfavProduct} from '../../redux/actions/favoritesActions';
+
 
 const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -17,12 +25,40 @@ const formSchema = Yup.object().shape({
 const formOptions = { resolver: yupResolver(formSchema) };
 
 const Login = () => {
+    let cookie = new Cookies();
+    const shoppingCookie = cookie.get('shopping')
+    const favoriteCookie = cookie.get('favorite')
+    const user = cookie.get('user')?.user
     const nav = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
+    const status = useSelector( (state) => state.userReducer.status)
+    let dispatch = useDispatch();
+    const [msg, setMsg] = useState("")
 
     const onSubmit = async (data) => {
-        nav('/home');
+        dispatch(userLogin(data));
     };
+
+    useEffect(() => {
+        if(status?.msg === "usuario logueado con éxito") {
+            shoppingCookie?.map(a => dispatch(addProduct({ email: user?.email, productId: Number(a.id), productSize: a.UserProduct.size, productQuantity: a.UserProduct.quantity === undefined ? 1 : a.UserProduct.quantity })))
+            favoriteCookie?.map(a => dispatch(addfavProduct({ email: user?.email, productId: Number(a.id) })))
+            cookie.remove('shopping')
+            cookie.remove('favorite')
+            nav('/home');
+            } else if(status === "contraseña incorrecta") {
+            setMsg(status)
+            } else if( status=== "Usuario o contraseña incorrecta") {
+            setMsg(status)
+        }
+    },[status])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+        setMsg("");
+        }, 5000)
+        return () => clearTimeout(timer);
+    }, [msg])
 
     const handleRecovery = () => {
         nav('/user/newpassword');
@@ -31,6 +67,7 @@ const Login = () => {
     const handleRegister = () => {
         nav('/register');
     }
+    
 
     return (
         <>
@@ -62,22 +99,26 @@ const Login = () => {
                                 />
                                 {<div className="form-register-errors">{errors.password?.message}</div>}
                             </div>
+                            <p className={msg ? 'newsletter_agregado_landing' : 'producto_sinagregar'}>{msg}</p>
                         </div>
-                        <div className="recover-pwd">
-                            <button className="button-password-recovery" onClick={handleRecovery}>
-                                ¿Olvidaste tu contraseña?
-                            </button>
-                        </div>
-                        <div className="register-btn">
+                        <button className="register-btn">
                             <input
                                 className="input-Login"
                                 type="submit"
                                 value="Ingresar"
                             />
-                        </div>
+                        </button>
                         <button className='register-btn' onClick={handleRegister}>
                             Registrarse
                         </button>
+                         <div className="recover-pwd">
+                            <button className="button-password-recovery" onClick={handleRecovery}>
+                                ¿Olvidaste tu contraseña?
+                            </button>
+                        </div>
+                        <div className='googleButtonContainer'>
+                            <ConnectGoogle login = {true} redirect = {true}></ConnectGoogle>
+                        </div>
                     </div>
                 </div>
             </form>

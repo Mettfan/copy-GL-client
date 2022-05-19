@@ -13,13 +13,6 @@
     justify-content: center;
 }
 
-.title-Auth0 {
-    margin-bottom: 10px;
-    font-size: 25px;
-    font-weight: 800;
-    position: relative;
-}
-
 .register-subtitle {
     font-size: 8px;
 }
@@ -31,7 +24,7 @@
     max-width: 700px;
     width: 100%;
     background-color: #0E1428;
-    color: white;
+    color: #EBEBEB;
     padding: 25px 30px;
     border-radius: 3px;
     border-top-left-radius: 0px;
@@ -61,7 +54,7 @@
 .input-register {
     border-radius: 3px;
     border: 1px solid black;
-    height: 27px;
+    height: 31px;
     width: 100%;
     padding-left: 15px;
     font-size: 12px;

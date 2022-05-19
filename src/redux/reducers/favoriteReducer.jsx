@@ -3,6 +3,7 @@ import {
     GET_FAVORITES,
     REMOVE_PRODUCT,
     ERROR,
+    DELETE_PRODUCT_ID
   } from '../actions/favoritesActions';
   
   const initialState = {
@@ -15,9 +16,11 @@ import {
       case ADD_PRODUCT:
         return { ...state, status: action.payload };
       case GET_FAVORITES:
-        return { ...state, status: action.payload, favorites: action.payload?.products || []  };
+        return { ...state, status: action.payload.msg, favorites: action.payload?.products || []  };
       case REMOVE_PRODUCT:
-        return { ...state, status: action.payload }; 
+        return { ...state, status: action.payload.msg, favorites: action.payload?.actualFavorite }; 
+      case DELETE_PRODUCT_ID:
+        return { ...state, producto: action.payload }; 
       case ERROR:
         return { ...state, status: action.payload };
   

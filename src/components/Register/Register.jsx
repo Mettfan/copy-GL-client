@@ -5,6 +5,7 @@ import { createUser } from '../../redux/actions/userActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { userLogin } from '../../redux/actions/userActions';
 
 const formSchema = Yup.object().shape({
     name: Yup.string()
@@ -57,7 +58,7 @@ const formSchema = Yup.object().shape({
         .required("Este campo es requerido")
         .max(20, "Máximo 20 carácteres")
         .min(8, "Mínimo 8 carácteres"),
-    picture: Yup.string(),
+    // picture: Yup.string(),
 });
 
 const formOptions = { resolver: yupResolver(formSchema) };
@@ -73,6 +74,7 @@ const Register = () => {
             dispatch(createUser(data));
             alert("Gracias por registrarse!")
             nav('/home')
+            dispatch(userLogin({email: data.email, password: data.password}));
         }else {
             alert("El registro ha sido rechazado")
             return nav('/home')
@@ -81,7 +83,6 @@ const Register = () => {
 
     const onSubmit = (data) => {
         MessageConfirm(data);
-        console.log(data, 'data')
         reset();
     };
 
@@ -215,7 +216,7 @@ const Register = () => {
                                 {<div className="form-register-errors">{errors.phone?.message}</div>}
                             </div>
                         </div>
-                        <div className="labelAndInput">
+                        {/* <div className="labelAndInput">
                             <label className="input-label">Link de foto de perfil: </label>
                             <input
                                 className="input-register"
@@ -223,7 +224,7 @@ const Register = () => {
                                 name="picture"
                                 {...register('picture')}
                             />
-                        </div>
+                        </div> */}
                         <div className="TyC">
                             Al crear su cuenta se aceptan términos y condiciones.
                         </div>

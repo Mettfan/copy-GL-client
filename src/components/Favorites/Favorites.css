@@ -1,0 +1,58 @@
+.title-container-fav {
+    display: flex;
+    margin: 20px;
+    color: #0E1428;
+}
+
+.fav-cart-container {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    flex: 1;
+}
+
+.into-container-fav {
+    background-color: white;
+    padding: 0 10%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.btn-newsletter-fav {
+    width: auto;
+    height: auto;
+    background-color: #E7BF50;
+    color: #0E1428;
+    border-radius: 3px;
+    font-weight: 1000;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-newsletter-fav:hover {
+    background-color: #EBEBEB;
+    color: #0E1428;
+}
+
+.fav-newsletter-btn {
+    display: flex;
+}
+
+.newsletter_agregado_favorites {
+    background-color: rgb(46, 45, 45);
+    color: white;
+    border-radius: 3px;
+    padding: 2px 10px px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    transition: all 0.5s;
+    margin-top: 10px;
+    margin-bottom: 0;
+}

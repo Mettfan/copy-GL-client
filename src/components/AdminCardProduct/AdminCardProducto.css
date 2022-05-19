@@ -1,0 +1,115 @@
+.card-admin-container-slim {
+    display: flex;
+    margin-top: 5px;
+    flex-direction: row;
+    font-weight: 600;
+    border: 1px solid #0E1428;
+    background-image: url(../../assets/—Pngtree—abstract\ lines\ background_450198.jpg);
+    color: #0E1428;
+    width: 100%;
+}
+
+.card-admin-container-slim-1 {
+    width:11%;
+}
+
+.card-admin-product-img {
+    width: 100%;
+    height: 100%;
+}
+
+.card-admin-container-slim-2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-admin-container-slim-3 {
+    display: flex;
+    align-items: center;
+    width: 25%;
+    justify-content: space-between;
+    margin-right: 2px;
+}
+
+.card-admin-container-slim-stockYbtn {
+    width: 70%;
+}
+
+.card-admin-information {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    justify-content: space-around;
+}
+
+.card-admin-slim-name {
+    width: 60%;
+}
+
+.price-slim-card-price {
+    width: 40%;
+}
+
+.buttons-admin-container-slim {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:30%;
+    justify-content: space-around;
+}
+
+.button-card-admin-slim {
+    margin: 4px 0;
+    border: none;
+    background-color: transparent;
+}
+
+@media (max-width: 584px) {
+    .card-admin-container-slim-1 {
+        width: 30%;
+    }
+
+    .card-admin-container-slim-2 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .buttons-admin-container-slim {
+        display: flex;
+        flex-direction: row;
+        height: 60%;
+        justify-content: space-around;
+        width: 40%;
+    }
+
+    .card-admin-container-slim-3 {
+        display: flex;
+        width:100%
+    }
+
+    .card-admin-slim-stock {
+        width: 25%;
+    }
+    
+    .card-admin-container-slim-stockYbtn {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .price-slim-card-price {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 40%;
+    }
+
+    .card-admin-information {
+        width: 100%;
+    }
+}

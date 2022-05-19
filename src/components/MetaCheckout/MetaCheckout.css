@@ -1,0 +1,92 @@
+.ethereumLogoCheckout{
+    width: 50px;
+    position: relative;
+    bottom: 50px;
+    animation-name: fadeIn ;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+}
+.ethereumLogoCheckoutContainer{
+    padding: 20px;
+    position: relative;
+    bottom: 50px;
+    /* margin-bottom: -50px; */
+    animation-name: bounce ;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.metaLogoCheckout{
+    animation-name: fadeIn ;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    width: 23rem;
+    filter: drop-shadow(1px 1px 1px white);
+}
+.metaLogoCheckoutContainer{
+    position: relative;
+    animation-name: slideIn ;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+.metaLoginCheckout{
+    animation-name: fadeIn ;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+.metaTransaction{
+    animation-name: fadeIn ;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+}
+.metaPaymentButtonContainer{
+    margin: 20px;
+}
+.paymentContainer{
+
+    position: relative;
+    bottom: 50px;
+    animation-name: slideIn ;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+.metaCheckoutBg{
+    position: fixed;
+    background: rgb(2,0,36);
+    background: radial-gradient( circle at 100%, rgba(2,0,36,1), rgba(9,9,121,1) 50%, #eee 75%, black 75%);
+    width: 100%;
+    height: 100%;
+
+}
+.feeDialog{
+    color: rgb(240, 214, 154);
+    font-size: small;
+    filter: drop-shadow(1px 1px 1px red);
+}
+.goShoppingButton{
+    background-color: pink;
+    position: fixed;
+    top: 60px;
+    padding: 5px;
+}
+.goShoppingButton:hover{
+    background-color: rgb(234, 79, 105);
+}
+
+@keyframes fadeIn {
+    0%{ opacity: 0 }
+    100%{ opacity: 1 }
+    
+}
+@keyframes slideIn {
+    0%{ bottom: 10px }
+    100%{ bottom: 0px }
+    
+}
+@keyframes bounce {
+    0%{ bottom: 10px }
+    50%{ bottom: 0px }
+    100%{ bottom: 10px }
+    
+}
+

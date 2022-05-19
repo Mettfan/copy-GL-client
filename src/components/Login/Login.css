@@ -105,7 +105,9 @@
     font-weight: bold;
     color: #0E1428;
     }
-
+.googleButtonContainer{
+    margin-top: 10px;
+}
 @media (max-width: 584px) {
     .login-labelAndInput {
         width: 100%;

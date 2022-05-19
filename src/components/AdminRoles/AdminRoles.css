@@ -1,0 +1,93 @@
+.form-admin-roles-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EBEBEB;
+    color: black;
+    flex-direction: column;     
+}
+
+.form-admin-role{
+    width: 98%;
+}
+
+.admin-role-inputAndSelect{
+    width: 60%;
+}
+
+.admin-roles-card {
+    width: 100%;
+}
+
+.admin-roles-container {
+    background-color: #EBEBEB;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    border-radius: 3px;
+}
+
+.card-user-permission {
+    border: 1px solid grey;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.admin-role-p1 {
+    margin: 5px;
+    display: flex;
+    width: 35%;
+}
+.admin-role-p2 {
+    margin: 5px;
+    display: flex;
+    width: 50%;
+}
+.admin-role-p3 {
+    margin: 5px;
+    display: flex;
+    width: 15%;
+}
+
+.admin-roles-labelAndInput {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.admin-roles-labelAndInput input{
+    width: 100%;
+}
+
+.admin-role-select {
+    background: #EBEBEB;
+    padding: 8px 16px;
+    flex: 1 1 30%;
+    border-radius: 3px;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+        -4px -4px 6px 0 rgba(116, 125, 136, .2),
+        inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+    font-size: 16px;
+}
+
+.admin-roles-input {
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 32px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}

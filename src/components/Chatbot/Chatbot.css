@@ -1,0 +1,143 @@
+.chatContainer{
+    
+background-color: rgb(0, 0, 0);
+}
+.react-chatbot-kit-chat-container {
+    background-color: black;
+
+}
+
+.react-chatbot-kit-chat-inner-container {
+    padding: 10PX;
+    filter: drop-shadow( 2px 2px 1px rgb(236, 231, 65));
+}
+
+.react-chatbot-kit-chat-header {
+    display: flex;
+    
+    color: black;
+    background-color: rgb(183, 183, 183);
+    padding: 20px;
+    filter: drop-shadow(
+        2px
+        2px
+        1px
+        gray
+    );
+}
+
+.react-chatbot-kit-chat-input-container {
+    padding: 10px;
+
+}
+
+.react-chatbot-kit-chat-message-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    ;
+
+}
+
+.react-chatbot-kit-chat-input {
+    padding: 10PX;
+}
+
+.react-chatbot-kit-chat-input-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.react-chatbot-kit-chat-input::placeholder {
+    font-size: small;
+
+}
+
+.react-chatbot-kit-chat-btn-send {
+    width: 50px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.react-chatbot-kit-chat-btn-send-icon {
+    padding: 10px;
+    background-color: rgb(167, 224, 255);
+    border-radius: 10px;
+}
+
+.react-chatbot-kit-chat-bot-message-container {
+    background-color: gray;
+}
+
+.react-chatbot-kit-chat-bot-avatar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+ 
+    width: 50px;
+    margin-top: 10px;
+    margin-left: 5px;
+    background-color: purple;
+    color: white;
+    border-radius: 200px;
+}
+
+.react-chatbot-kit-chat-bot-avatar-icon {
+    background-color: red;
+
+}
+
+.react-chatbot-kit-chat-bot-avatar-letter {
+    padding-top: 12px;
+}
+
+.react-chatbot-kit-chat-bot-message {
+    width: 50%;
+    background-color: rgb(172, 172, 247);
+    margin: 10px 10px 10px 70px;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.react-chatbot-kit-chat-bot-message-arrow {
+    
+}
+
+.react-chatbot-kit-chat-bot-loading-icon-container {
+    
+}
+
+.chatbot-loader-container {
+    
+}
+
+#chatbot-loader #chatbot-loader-dot1 {
+    
+}
+
+#chatbot-loader #chatbot-loader-dot2 {
+    
+}
+
+#chatbot-loader #chatbot-loader-dot3 {
+    
+}
+
+.react-chatbot-kit-error {
+    
+}
+
+.react-chatbot-kit-error-container {
+    
+
+}
+
+.react-chatbot-kit-error-header {
+    
+}
+
+.react-chatbot-kit-error-docs {
+    
+}

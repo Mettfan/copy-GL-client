@@ -1,0 +1,23 @@
+.reloadIcon{
+    width: 20px;
+    margin-left: 5px;
+    filter: drop-shadow(2px 1px 0px white);
+    background-color: rgb(233, 204, 150);
+}
+.reloadIcon:hover{
+    background-color: rgb(172, 170, 170);
+    filter: drop-shadow(2px 1px 0px rgb(255, 233, 106));
+    
+}
+.equivalencyEth{
+    color: white;
+}
+.selectCurrency{
+    padding: 5px;
+    
+}
+.selectCurrency:focus{
+    scale: (1.5);
+    background-color: rgb(138, 171, 237);
+
+}

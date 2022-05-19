@@ -10,22 +10,20 @@ export default function AdminGetProducts ({activeDrawer, receiveProduct}) {
     const dispatch = useDispatch()
     const [search, setSearch] = useState('')
     const [selectCategory, setSelectCategory] = useState('')
-
     const filterCategory = productos?.map(( product, i ) => product.CategoryName)
     const categories = new Set(filterCategory)
     const arrayCategories = [...categories]
 
+    const productEnabled = productos.filter(p => p.disabled === false) 
     const productViews = selectCategory === "" 
-        ? productos 
-        : productos.filter(p => p.CategoryName === selectCategory)
+        ? productEnabled 
+        : productEnabled.filter(p => p.CategoryName === selectCategory)
 
     const searchProductViews = productViews.filter(p=> p.name.toLowerCase().includes(search.toLowerCase()))
 
-    console.log('productos', productos)
-
     useEffect(()=>{
         dispatch(getProducts())
-    },[status])
+    },[dispatch, status])
 
     const handleInputChange = (e) => {
         e.preventDefault();
@@ -52,20 +50,16 @@ export default function AdminGetProducts ({activeDrawer, receiveProduct}) {
                     )
                 }
             </select>
-            <div className="sb_nav-admin">
-                <form id="Find" className="Find" >
-                    <div className="sb_searchcontainer-admin">
+                <form>
                     <input
                         id="form"
                         type="text"
                         placeholder="Busca tu articulo"
-                        className="inputSearch-admin"
+                        className="input-get-product"
                         value={search}
                         onChange ={(e) => {handleInputChange(e)}}
                     />
-                    </div>
                 </form>
-            </div>
         </div>
         <div className="container-articulos">
             <div>
@@ -73,16 +67,14 @@ export default function AdminGetProducts ({activeDrawer, receiveProduct}) {
                     ?   <div>
                             {searchProductViews.length 
                                 ?   <div>
-                                        {searchProductViews?.map( (producto, i) => 
+                                        {searchProductViews.reverse()?.map( (producto, i) => 
                                             <AdminCardProduct 
                                                 key = {i}
                                                 image= {producto.image}
                                                 name= {producto.name}
-                                                stock= {producto.stock}
-                                                size= {producto.size}
-                                                color= {producto.color}
+                                                stock_by_size= {producto.stock_by_size}
                                                 price= {producto.price}
-                                                drawer= {activeDrawer}
+                                                activeDrawer= {activeDrawer}
                                                 id= {producto.id}
                                                 producto= {producto}
                                                 receiveProduct= {receiveProduct}

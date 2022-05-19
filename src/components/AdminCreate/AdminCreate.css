@@ -2,6 +2,21 @@
     width: 10%;
 }
 
+.labelAndInput-small {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.input-small {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 8px 0 4px 0;
+    width: calc(100% / 2 - 20px);
+}
+
 .container-register-form-admin {
     background-color: grey;
 }
@@ -15,23 +30,48 @@
 }
 
 .input-create-stock {
+    margin-left: 2px;
     border-radius: 3px;
-    border: 1px solid black;
+    border: none;
     background-color: #EBEBEB;
-    height: 27px;
-    width: 100%;
-    padding-left: 15px;
-    font-size: 14px;
+    height: 31px;
+    width: 50px;
+    padding-left: 3px;
+    font-size: 15px;
     outline: none;
     transition: all 0.3s ease;
     color: #0E1428;
+}
+
+.input-register-description {
+        border-radius: 3px;
+        border: 1px solid grey;
+        height: 50px;
+        width: 100%;
+        padding-left: 15px;
+        font-size: 12px;
+        outline: none;
+        transition: all 0.3s ease;
+        color: grey;
 }
 
 .select-create-stock {
     background: #EBEBEB;
     padding: 3px;
     border-radius: 3px;
+    width: 50px;
     color: #0E1428;
+    border:none;
+}
+
+.select-category-product {
+    margin: 2px;
+    background: #EBEBEB;
+    padding: 3px;
+    border-radius: 3px;
+    width: 50%;
+    color: #0E1428;
+    border:none;
 }
 
 .button-create-stock {
@@ -40,6 +80,32 @@
     height: 31px;
     width: 8rem;
     background-color: #E7BF50;
+    color: #0E1428;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.container-stock-button {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.container-stock-selectAndInput {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+}
+
+.button-create-stock-disabled {
+    margin: 5px;
+    padding: 5px;
+    height: 31px;
+    width: 8rem;
+    background-color: grey;
     color: #0E1428;
     border: none;
     font-weight: bold;

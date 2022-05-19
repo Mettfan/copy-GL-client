@@ -1,0 +1,154 @@
+.metaLogo{
+    width: 30px;
+    
+}
+
+.metaLoginButton{
+    padding: 10px;
+    background-color: transparent;
+    animation: metaUnselect;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    transform: scale(1);
+    color: white;
+    /* background-color: rgb(13, 11, 33); */
+    /* margin-left: 10px; */
+}
+
+.metaLoginButton:hover{
+    animation-name: metaSelect;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    transform: scale(1.2);
+}
+.logoutMetaButton{
+    color:  rgb(0, 0, 0);
+    background-color: pink;
+    padding: 3px;
+}
+.logoutMetaButton:hover{
+    color:  rgb(0, 0, 0);
+    background-color: rgb(185, 52, 74);
+    padding: 3px;
+    font-weight: 500;
+}
+
+.payMetaButton{
+    padding: 10px;
+    color: black;
+    background-color: #E7BF50;
+    /* margin-bottom:  */
+    position: relative;
+    bottom: 10px;
+}
+.payMetaButton:hover{
+    background-color: black;
+    filter: drop-shadow(1px 1px 1px white);
+    color: white;
+}
+
+/* .logoutMetaButton{
+    padding: 10px;
+    width: 10px;
+    font-size: xx-small;
+    height: 30px;
+    animation-name: hidelogout;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+
+.logoutMetaButton:hover{
+    width: 100px;
+    font-size: xx-small;
+    animation-name: showlogout;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+
+} */
+.widget_menu{
+    /* background-color: rgb(52, 52, 103); */
+    padding: 10px;
+    /* width: 10px; */
+    font-size: small;
+    height: 30px;
+    animation-name: hidewidget_menu;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+
+.widget_menu:hover{
+    /* width: 100px; */
+    font-size: small;
+    animation-name: showwidget_menu;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+   
+
+}
+.dropdown-widget_menu-true{
+    color: rgb(255, 255, 255)
+    
+    
+    /* position: fixed; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* justify-content: space-around; */
+    /* right: 3px; */
+    /* top: 0; */
+    /* top: 0; */
+    /* right: 0; */
+}
+.dropdown-widget_menu-false{
+    color: white;
+    
+}
+.dropdown-widget_menu-false:hover{
+    animation: metaSelect;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    
+}
+.balance{
+    color: white;
+    /* margin-left: 10px; */
+
+}
+.lastTxHash{
+    color: red;
+    filter: drop-shadow( 1px 1px 1px white);
+}
+
+@keyframes metaSelect {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.2);
+    }
+}
+@keyframes metaUnselect {
+    0%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes showwidget_menu {
+    /* 0%{
+        width: 10px;
+    }
+    100%{
+        width: 100px;
+    } */
+    
+}
+@keyframes hidewidget_menu {
+    /* 0%{
+        width: 100px;
+    }
+    100%{
+        width: 10px;
+    } */
+    
+}

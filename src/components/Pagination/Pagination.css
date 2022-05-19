@@ -12,3 +12,8 @@
     width: 100%;
     list-style: none;
 }
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
