@@ -8,6 +8,8 @@ import Cookies from "universal-cookie";
 import { TiArrowBack } from 'react-icons/ti';
 import {Link} from 'react-router-dom'
 import { getUser } from "../../redux/actions/userActions";
+import { Button, Modal } from 'react-bootstrap';
+
 
 
 function validate(input){
@@ -84,13 +86,29 @@ export default function EditUser  () {
         }) )
     }
 
+    const [modal, setModal] = useState("")
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const modalDelete = (value) => {
+        setModal(value)
+        handleShow()
+    }
+
+    const handlemodal=(data)=>{
+        nav('/user/profile')
+       
+    }
+
     function onSubmit(e){
         e.preventDefault();
         if(!input.name || !input.lastName || !input.email || !input.dni|| !input.address|| !input.province  || !input.postal|| !input.phone  ){
-        alert("no completo todo el formulario!")}
+        modalDelete("no completo todo el formulario!")}
         else{
         dispatch(updateUser({...input, token: tokenUser}))
-        alert('Datos actualizados')
+        modalDelete('Datos actualizados')
         setInput({
             name:'',
             lastName: '',
@@ -102,7 +120,7 @@ export default function EditUser  () {
             province: '',
             postal: '',
         })
-        nav('/user/profile')
+        
     }
     }
 
@@ -232,6 +250,25 @@ export default function EditUser  () {
                          </div>
                    </div>
             </form>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+            <Modal.Header closeButton>
+                <Modal.Title>Modificacion exitosa!!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {modal}
+            </Modal.Body>
+            <Modal.Footer>
+                 {/* <Button variant="secondary" onClick={handleClose}>
+                    No
+                </Button>  */}
+                <Button variant="primary" onClick={handlemodal} >Continuar</Button>
+            </Modal.Footer>
+            </Modal>
 
         </div>
     );

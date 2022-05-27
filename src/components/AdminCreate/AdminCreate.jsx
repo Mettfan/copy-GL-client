@@ -293,6 +293,7 @@ const AdminCreate = ({ handleHome }) => {
                             <input
                                 type="submit"
                                 value="CREAR PRODUCTO"
+                                disabled= {true}
                             />
                         </div>
                     </div>

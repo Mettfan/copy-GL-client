@@ -60,6 +60,10 @@
     overflow: auto;
 }
 
+.admin-info::-webkit-scrollbar {
+    width: 0;
+}
+
 .admin-drawer p {
     padding-top: 15%;
 }

@@ -8,12 +8,13 @@ import Cookies from "universal-cookie";
 import { TiArrowBack } from 'react-icons/ti';
 import {Link} from 'react-router-dom'
 import { getUser } from "../../redux/actions/userActions";
-import {Modal, Button} from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap';
 
 
 
 function validate(input){
     let errors = {};
+    console.log(errors)
     if(!/^[a-z A-Z]+$/.test(input.name)||input.name?.length<3 || input.name?.length>30){
         errors.name = "*Campo requerido";
     }
@@ -43,90 +44,98 @@ function validate(input){
 
 }
 
-export default function AdminRegisterEdit  () {
+
+export default function EditUser  () {
     let cookie = new Cookies();
-    const userEdit = cookie.get('user').user
-    const dispatch = useDispatch();
+    const userEdit = useSelector(state => state.userReducer.usuario)
+    // console.log('reducer', userEdit)
+    const user = cookie.get('user')
+    // console.log('cookie', user)
     const nav = useNavigate();
+    const dispatch = useDispatch();
+    const[errors, setErrors] = useState({});
+    const[input, setInput] = useState({
+         name: userEdit.user?.name,
+         lastName: userEdit.user?.lastName,
+         email: userEdit.user?.email,
+         born: userEdit.user?.born,
+         dni: userEdit.user?.dni,
+         address: userEdit.user?.address,
+         province: userEdit.user?.province,
+         postal: userEdit.user?.postal,
+         phone: userEdit.user?.phone,
+         sendAddress: userEdit.user?.sendAddress,
+         
+     })
+    const tokenUser = cookie.get('user')?.tokenSession;
+    console.log('editarusuario', tokenUser)
 
-   //const userEdit = useSelector(state => state.userReducer.status.user);
-  
+  useEffect(() => {
+        dispatch(getUser({ email: user.email, token:tokenUser}))
+        // dispatch(getUser({ email: user.email, token: tokenUser}))
+    },[])
+    
+    function handlerOnChange (e){
+        setInput({
+            ...input,
+            [e.target.name]:e.target.value
+        })
+        setErrors(validate({
+            ...input,
+            [e.target.name]:e.target.value
+        }) )
+    }
 
-   const[errors, setErrors] = useState({});
-   const[input, setInput] = useState({
-        name: userEdit?.name,
-        lastName: userEdit?.lastName,
-        email: userEdit?.email,
-        dni: userEdit?.dni,
-        born: userEdit?.born,
-        address: userEdit?.address,
-        province: userEdit?.province,
-        postal: userEdit?.postal,
-        phone: userEdit?.phone,
-        
-    })
     const [modal, setModal] = useState("")
     const [show, setShow] = useState(false);
-  
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
-    const modalEdit = (value) => {
-      setModal(value)
-      handleShow()
+
+    const modalDelete = (value) => {
+        setModal(value)
+        handleShow()
     }
-  
 
+    const handlemodal=(data)=>{
+        nav('/user/profile')
+       
+    }
 
-
-    
-function handlerOnChange (e){
-                setInput({
-                    ...input,
-                    [e.target.name]:e.target.value
-                })
-                setErrors(validate({
-                    ...input,
-                    [e.target.name]:e.target.value
-                }) )
-            }
-
-            function onSubmit(e){
-                e.preventDefault();
-                if(!input.name || !input.lastName || !input.email || !input.dni|| !input.address|| !input.province  || !input.postal|| !input.phone  ){
-                 modalEdit("no completo todo el formulario!")
-                }
-                else{
-                modalEdit('Datos actualizados')
-                dispatch(updateUser(input))
-                
-                setInput({
-                    name:'',
-                    lastName: '',
-                    email: '',
-                    dni: '',
-                    phone: '',
-                    born: '',
-                    address: '',
-                    province: '',
-                    postal: '',
-                })
-             nav('/admin/profile')
-            }
-        }
+    function onSubmit(e){
+        e.preventDefault();
+        if(!input.name || !input.lastName || !input.email || !input.dni|| !input.address|| !input.province  || !input.postal|| !input.phone  ){
+        modalDelete("no completo todo el formulario!")}
+        else{
+        dispatch(updateUser({...input, token: tokenUser}))
+        modalDelete('Datos actualizados')
+        setInput({
+            name:'',
+            lastName: '',
+            email: '',
+            dni: '',
+            phone: '',
+            born: '',
+            address: '',
+            province: '',
+            postal: '',
+        })
+        
+    }
+    }
 
             
     return (
         <div className="container-register-form">
-            <form onSubmit={onSubmit} >
-                <div className="container-admin-edit">
-                    <div className="form-container-edit">
-                    <div>
-                 <Link to='/admin/profile' style={{ color: 'white', fontSize: '20px' }}>
+          <form onSubmit={onSubmit} >
+            <div className="container-user-edit">
+               <div className="form-container-edit">
+                <div>
+                 <Link to='/user/profile' style={{ color: 'white', fontSize: '20px' }}>
                   <TiArrowBack/>
                  </Link>
                 </div>
-                        <div className="title">Modificar mis datos</div>
+                     <div className="title"> Mis datos</div>
                         <p className="register-subtitle">(* campos requeridos)</p>
                         <div className="form-group-one">
                             <div className="labelAndInput">
@@ -175,6 +184,7 @@ function handlerOnChange (e){
                                     /> 
                                       {errors.born && <p className="form-register-errors">{errors.born}</p>}
                                 </div>
+                            
                                 <div className="labelAndInput">
                                 <label className="input-label">*DNI: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
@@ -232,8 +242,10 @@ function handlerOnChange (e){
                                 </div>
                                 </div>
                                 <div className="form-submit">
-                                <input 
-                                type="submit" value="Actualizar" />
+                                <input
+                                type="submit"
+                                value="Actualizar"
+                                />
                              </div>
                          </div>
                    </div>
@@ -245,21 +257,19 @@ function handlerOnChange (e){
                 keyboard={false}
             >
             <Modal.Header closeButton>
-                <Modal.Title>Advertencia</Modal.Title>
+                <Modal.Title>Modificacion exitosa!!</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {modal}
             </Modal.Body>
             <Modal.Footer>
-                {/* <Button variant="secondary" onClick={handleClose}>
-                    completar
-                </Button> */}
-                <Button variant="primary" onClick={handleClose} >Continuar</Button>
+                 {/* <Button variant="secondary" onClick={handleClose}>
+                    No
+                </Button>  */}
+                <Button variant="primary" onClick={handlemodal} >Continuar</Button>
             </Modal.Footer>
             </Modal>
 
         </div>
     );
 };
-
-

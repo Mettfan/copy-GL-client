@@ -8,8 +8,8 @@ import { userLogin } from '../../redux/actions/userActions';
 import  ConnectGoogle  from '../ConnectGoogle/ConnectGoogle'
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import { addProduct } from '../../redux/actions/shoppingActions';
 import { addfavProduct} from '../../redux/actions/favoritesActions';
+import { addProduct, stateNav } from '../../redux/actions/shoppingActions';
 
 
 const formSchema = Yup.object().shape({
@@ -41,6 +41,7 @@ const Login = () => {
 
     useEffect(() => {
         if(status?.msg === "usuario logueado con éxito") {
+            dispatch(stateNav())
             shoppingCookie?.map(a => dispatch(addProduct({ email: user?.email, productId: Number(a.id), productSize: a.UserProduct.size, productQuantity: a.UserProduct.quantity === undefined ? 1 : a.UserProduct.quantity })))
             favoriteCookie?.map(a => dispatch(addfavProduct({ email: user?.email, productId: Number(a.id) })))
             cookie.remove('shopping')

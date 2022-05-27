@@ -62,10 +62,11 @@ function ChatUser(props) {
             <strong className="current-chatting-user"><h3>Chat con un Admin</h3></strong>
           </div>
           <ul ref={uiMessagesRef}  className="content-body"><div  className="chat-items">
-            {messages.map((msg, index) => (
+            {messages.map((msg, index) =>(
+               
               <li key={index}>
               <div style={{ animationDelay: `0.8s` }}
-                className={`chat-item ${msg.name !== 'admin' ? "me" : "other"}`}>
+                className={`chat-item ${msg.name !== 'Admin' ? "me" : "other"}`}>
                 <div className="chat-item-content">
                   <strong>{`${msg.name}: `}</strong>
                   <div className="chat-msg"> {msg.body} </div>

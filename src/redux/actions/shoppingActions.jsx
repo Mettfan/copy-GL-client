@@ -7,6 +7,7 @@ export const RETURN_PRODUCT = 'RETURN_PRODUCT'
 export const EMPTY_SHOPPING = 'EMPTY_SHOPPING'
 export const TOTAL_SHOPPING = 'TOTAL_SHOPPING'
 export const TOTAL_DELETE_SHOPPING = 'TOTAL_DELETE_SHOPPING'
+export const STATE_NAVBAR = 'STATE_NAVBAR'
 export const ERROR = 'ERROR';
 
 // Habilitada
@@ -110,5 +111,11 @@ export const totalDeleteShopping = ( index ) => (dispatch) => {
       dispatch({
         type: TOTAL_DELETE_SHOPPING,
         payload: index,
+      });
+    }
+
+export const stateNav = () => (dispatch) => {
+      dispatch({
+        type: STATE_NAVBAR,
       });
     }

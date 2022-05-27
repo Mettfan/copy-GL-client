@@ -10,14 +10,18 @@ import NavigationBar from '../Nav/NavigationBar';
 import Paged from '../Pagination/Pagination';
 
 
-function Home({alert, setAlert}) {
+function Home({alert, setAlert, soporte}) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.productReducer.productos.reverse());
   useEffect(() => {
     dispatch(getProducts());
+    soporte();
   }, []);
 
-  
+  // useEffect(()=> {
+  // },[])
+
+
   /**
    //!--------- PAGINADO ----------------------------------
    **/
@@ -31,6 +35,7 @@ function Home({alert, setAlert}) {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
+
 
   const filterCategory = (category) => {
     dispatch(getProductsbyCategory(category));

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getProductsbyName } from '../../redux/actions/productActions';
 import ConnectMetamask from '../ConnectMetamask/ConnectMetamask';
 import './NavigationBar.css'
@@ -9,68 +9,85 @@ import { BiUser } from 'react-icons/bi';
 import { RiUserUnfollowLine } from 'react-icons/ri';
 import { AiOutlineShopping } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
 import { FaRegHeart } from 'react-icons/fa';
 import Cookies from 'universal-cookie';
 import { userLogout } from '../../redux/actions/userActions';
 import ConnectGoogle from '../ConnectGoogle/ConnectGoogle';
 import Chatbot from 'react-chatbot-kit';
 import { getFavorites } from '../../redux/actions/favoritesActions';
-import { getShopping } from '../../redux/actions/shoppingActions';
+import { getShopping } from '../../redux/actions/shoppingActions'
 
 function NavigationBar() {
 const {pathname} = window.location;
   const cookies = new Cookies();
-  const user = useSelector( (state) => state.userReducer.usuario)
+  const userReducer = useSelector( (state) => state.userReducer.usuario)
+  const userCookie = cookies.get('user')?.user
   const productos = useSelector((state) => state.productReducer.productos);
+  const stateNav = useSelector((state) => state.shoppingReducer.nav);
+  const nav = useNavigate();
 
+  const user = userReducer || userCookie
 
-
-  const nav = useNavigate()
   const logout = () => {
     dispatch(userLogout(cookies.get('user')?.tokenSession))
     nav('/')
   }
 
-  // Pesadilla de Tomi:
   let [state, setState] = useState({
     balance: localStorage.getItem('balance') || null
   })
+
   let balance = state.balance
 
-  useEffect(() => {
 
-    console.log(user)
-    dispatch(getFavorites({email: user?.user?.email}))
-    dispatch(getShopping({email: user?.user?.email}))
-
-  }, [user])
   /**
      //!--------- BUSQUEDA ----------------------------------
   **/
-     const[name, setName] = useState('')
-     const dispatch = useDispatch();
+    const[name, setName] = useState('')
+    const dispatch = useDispatch();
 
 
-     function handleInputChange(event) {
-         event.preventDefault();
-         setName(event.target.value.toLowerCase());
-     }
-   
-     function handleSubmit(event) {
-         event.preventDefault();
-         dispatch(getProductsbyName(name))
-         setName('')
+    function handleInputChange(event) {
+        event.preventDefault();
+        setName(event.target.value.toLowerCase());
+    }
+  
+    function handleSubmit(event) {
+        event.preventDefault();
+        dispatch(getProductsbyName(name))
+        setName('')
         }
 
+  const favsReducer = useSelector((state) => state.favoriteReducer.favorites);
+  const shopReducer = useSelector((state) => state.shoppingReducer.products);
+
+  // useEffect(() => {
+  //   console.log('cambio')
+  // },[])
+
+  const shopping = cookies.get('shopping');
+  const favorites = cookies.get('favorite');
+
+  const favs = favsReducer.length ? favsReducer : favorites
+  const shop = shopReducer.length ? shopReducer : shopping
+
+  useEffect(() => {
+    console.log(user)
+    dispatch(getFavorites({ email : user?.email }))
+    dispatch(getShopping({ email: user?.email }))
+  },[stateNav])
+
+  console.log('user', user)
   
-        const favs = useSelector((state) => state.favoriteReducer.favorites);
-        const shop = useSelector((state) => state.shoppingReducer.products);
+  console.log('shopReducer', shopReducer)
+  console.log('favsReducer', favsReducer)
 
-        console.log(favs, 'favs')
-        console.log(shop, 'shop')
-        
+  console.log('shopping', shopping)
+  console.log('favorites', favorites)
 
+  console.log(favs, 'favs')
+  console.log(shop, 'shop')
+  
 return ((!pathname.includes("admin") && pathname !=="/")  &&
 
 
@@ -103,10 +120,13 @@ return ((!pathname.includes("admin") && pathname !=="/")  &&
       }
       { localStorage.getItem('balance') ? Number(localStorage.getItem('balance')).toFixed(5) + ' ETH' : null }
 
-      {
+      {/* {
         cookies.get('user')?.user.permission === 'admin' ?
         <Nav.Link href="/admin" style={{ maxHeight: '100px', color: 'white' }}>Admin</Nav.Link>
         : null
+      } */}
+      {
+        <Button variant="outline-warning" onClick={() => nav("/admin")}>Panel Admin</Button>
       }
 
       </Nav>
@@ -126,8 +146,8 @@ return ((!pathname.includes("admin") && pathname !=="/")  &&
       }
 
       <div style={{ marginTop: '10px'}}>
-        <Link style={{ margin: '40px', color: 'white', textDecoration: 'none', fontSize: '1.3rem' }} to="/shoppingcart">  <FiShoppingCart/> <span style={{ fontSize: '12px', background: 'red', padding: ' 5px 10px', borderRadius: '50%' }}>{shop.length}</span> </Link>
-        <Link style={{ margin: '40px', color: 'white', textDecoration: 'none', fontSize: '1.3rem' }} to="/favorites">  <FaRegHeart/> <span style={{ fontSize: '12px', background: 'red', padding: ' 5px 10px', borderRadius: '50%' }}>{favs.length}</span> </Link>
+        <Link style={{ margin: '40px', color: 'white', textDecoration: 'none', fontSize: '1.3rem' }} to="/shoppingcart">  <FiShoppingCart/> <span style={{ fontSize: '12px', background: 'red', padding: ' 5px 10px', borderRadius: '50%' }}>{shop?.length || 0}</span> </Link>
+        <Link style={{ margin: '40px', color: 'white', textDecoration: 'none', fontSize: '1.3rem' }} to="/favorites">  <FaRegHeart/> <span style={{ fontSize: '12px', background: 'red', padding: ' 5px 10px', borderRadius: '50%' }}>{favs?.length || 0}</span> </Link>
       </div>
     </Navbar.Collapse>
   </Container>

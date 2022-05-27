@@ -37,7 +37,8 @@ function AdminMetaOrder({ producto, back, sendAddress }) {
           <p>subtotal</p>
           {<p>${`${sendAddress?.total}`}</p>}
         </div>
-
+          <hr></hr>
+          <h1>Datos de envío</h1>
         <div className="container_info_user">
           <div className="container_user_descripcion">
             <p className="change_p">
@@ -64,7 +65,7 @@ function AdminMetaOrder({ producto, back, sendAddress }) {
             <p className="change_p">Status: {`${sendAddress?.status}`}</p>
           </div>
         </div>
-
+          <hr></hr>
         <button onClick={backAction} className="button_back_change">
           Volver
         </button>

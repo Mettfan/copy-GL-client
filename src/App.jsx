@@ -40,6 +40,11 @@ function App() {
   
  const user = cookies.get('user');
   const [open, setOpen] = useState(false);
+  const [state, setState] = useState(false);
+
+  const soporte = () => {
+    setState(!state)
+  }
 
   return (
     <div className="App">
@@ -47,7 +52,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />}/>
+        <Route path="/home" element={<Home soporte={soporte}/>}/>
 
         <Route path="/miscompras" element={<UserPurchase />} />
         <Route path="/login" element={<Login />} />

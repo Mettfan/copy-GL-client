@@ -101,6 +101,9 @@ export default function ShoppingCart ( ) {
         price: total,
         quantity: shopping?.products.map((e) => e.UserProduct?.quantity)
     }
+
+    console.log('shopping', shopping.products)
+    console.log('shoppingCookie', shoppingCookie)
 return (<div>
             {
                 shopping?.products.length || shoppingCookie?.length

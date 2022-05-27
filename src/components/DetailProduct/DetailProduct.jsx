@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import { getProduct } from "../../redux/actions/productActions"
 import { addfavProduct, deletefavProduct, getFavorites, deleteProductAction } from '../../redux/actions/favoritesActions';
-import { addProduct } from '../../redux/actions/shoppingActions';
+import { addProduct, stateNav } from '../../redux/actions/shoppingActions';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { TiArrowBack } from 'react-icons/ti';
@@ -52,6 +52,7 @@ const DetailProduct = () => {
   const addShoppingCart = () => {
     if(!sizeSelect) return setShow("Seleccionar size para añadir")
     if(!user){
+      dispatch(stateNav())
       const item = {...product, UserProduct: {id: product.id, size: sizeSelect} }
       const addProductShopping = [...shoppingCookie, item]
       cookies.set('shopping', 
@@ -61,6 +62,7 @@ const DetailProduct = () => {
     }
     if(user){
       dispatch(addProduct({ email: user?.email, productId: Number(id), productSize: sizeSelect, productQuantity: 1 }))
+      dispatch(stateNav())
       setShow("Añadido al carrito")
     }
   }
@@ -69,6 +71,7 @@ const DetailProduct = () => {
       setFavorite(!favorite)
       if(!favorite) {
         if(!user){
+          dispatch(stateNav())
           const addProductFavorite = [...favoriteCookie, product]
           cookies.set('favorite', 
             addProductFavorite
@@ -78,11 +81,13 @@ const DetailProduct = () => {
         if(user){      
           dispatch(addfavProduct({ email: user?.email, productId: Number(id) }))
           setShow("Añadido a favoritos")
+          dispatch(stateNav())
         }
       }else {        
         if(user){
           dispatch(deletefavProduct({ email: user?.email, productId: Number(id) }))
           setShow("Eliminado de favoritos")
+          dispatch(stateNav())
         }
         if(!user){  
           const deleteFavCookie = favoriteCookie.find(e => e.name === product.name) 
@@ -93,6 +98,7 @@ const DetailProduct = () => {
             copyFavoritesCookie
           , { path: '/', expires: new Date(Date.now() + (3600 * 1000 * 24))}); //1 dia
           setShow("Eliminado de favoritos")
+          dispatch(stateNav())
         }
       }
   }

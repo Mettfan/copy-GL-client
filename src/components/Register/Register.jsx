@@ -1,4 +1,4 @@
-import './Register.css';
+ import './Register.css';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../redux/actions/userActions';
@@ -6,7 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../../redux/actions/userActions';
-
+import { Button, Modal } from 'react-bootstrap';
+import { useState } from 'react';
 
 const formSchema = Yup.object().shape({
     name: Yup.string()
@@ -65,6 +66,22 @@ const formSchema = Yup.object().shape({
 const formOptions = { resolver: yupResolver(formSchema) };
 
 const Register = () => {
+
+    const [modal, setModal] = useState("")
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const modalDelete = (value) => {
+        setModal(value)
+        handleShow()
+    }
+
+    const handlemodal=(data)=>{
+        nav('/home')
+    }
+
     
 
     const dispatch = useDispatch();
@@ -72,23 +89,21 @@ const Register = () => {
     const nav = useNavigate()
 
     function MessageConfirm(data) {
-        var mensaje = window.confirm("Al registrarse acepta nuestros términos y condiciones")
-        if(mensaje) {
-            dispatch(createUser(data));
-            alert("Gracias por registrarse!")
-            nav('/home')
-            dispatch(userLogin({email: data.email, password: data.password}));
-        }else {
-            alert("El registro ha sido rechazado")
-            return nav('/home')
-        }
+        
+        dispatch(createUser({...data, permission:"admin"}));
+        setTimeout(() => {
+            dispatch(userLogin({email: data.email, password: data.password}))
+        }, 1000);
+        setTimeout(() => {
+            modalDelete("Gracias!!")
+            // dispatch(userLogin({email: data.email, password: data.password}))
+        }, 1100);
     }
 
     const onSubmit = (data) => {
         MessageConfirm(data);
         reset();
     };
-
     return (
         <div className="container-register">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -241,7 +256,25 @@ const Register = () => {
                     </div>
                 </div>
             </form>
-            
+             <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+            <Modal.Header closeButton>
+                <Modal.Title>Registro Exitoso!!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {modal}
+            </Modal.Body>
+            <Modal.Footer>
+                 {/* <Button variant="secondary" onClick={handleClose}>
+                    No
+                </Button>  */}
+                <Button variant="primary" onClick={handlemodal} >Continuar</Button>
+            </Modal.Footer>
+            </Modal>
         </div>
     );
 };

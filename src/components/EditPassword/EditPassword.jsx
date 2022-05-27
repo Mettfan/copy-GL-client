@@ -14,7 +14,7 @@ import {Modal, Button} from 'react-bootstrap';
 function validate(input){
     let errors = {};
     
-    if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(input.password)){
+    if(!/^(?=.\d)(?=.[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(input.password)){
         errors.password = "*Campo requerido";
      }
    
@@ -41,15 +41,20 @@ export default function EditPassword  () {
          
      })
      const [modal, setModal] = useState("")
-  const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-  const modalEdit = (value) => {
-    setModal(value)
-    handleShow()
-  }
+    const modalDelete = (value) => {
+        setModal(value)
+        handleShow()
+    }
+
+    const handlemodal=(data)=>{
+        nav('/user/profile')
+       
+    }
 
   useEffect(() => {
         dispatch(getUser({ email: user.email, password: user.password, token:tokenUser }))
@@ -70,17 +75,17 @@ export default function EditPassword  () {
     function onSubmit(e){
         e.preventDefault();
         if(!input.password ){
-        modalEdit("no completo todo el formulario!")}
+        modalDelete("no completo todo el formulario!")}
         else{
         dispatch(updatePassword({...input, token: tokenUser}))
        
-        modalEdit('Datos actualizados')
+        modalDelete('Datos actualizados')
         setInput({
             password:'',
             email:''
             
         })
-        nav('/user/profile')
+       
     }
     }
 
@@ -107,7 +112,7 @@ export default function EditPassword  () {
                                     value={input.password}
                                     // placeholder= {userEdit?.password} 
                                     /> 
-                                      {errors.password && <p className="form-register-errors">{errors.password}</p>}
+                                      {/* {errors.password && <p className="form-register-errors">{errors.password}</p>} */}
                                 </div>
                                 
                                 <div className="labelAndInput">
@@ -141,20 +146,19 @@ export default function EditPassword  () {
                 keyboard={false}
             >
             <Modal.Header closeButton>
-                <Modal.Title>Advertencia</Modal.Title>
+                <Modal.Title>Modificacion exitosa!!</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {modal}
             </Modal.Body>
             <Modal.Footer>
-                {/* <Button variant="secondary" onClick={handleClose}>
-                    completar
-                </Button> */}
-                <Button variant="primary" onClick={handleClose} >Continuar</Button>
+                 {/* <Button variant="secondary" onClick={handleClose}>
+                    No
+                </Button>  */}
+                <Button variant="primary" onClick={handlemodal} >Continuar</Button>
             </Modal.Footer>
             </Modal>
 
         </div>
     );
 };
-

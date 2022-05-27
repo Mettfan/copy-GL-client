@@ -158,7 +158,7 @@ function ChatSupp(props) {
                   {messages.map((msg, index) => (
                     <li key={index}>
                       <div style={{ animationDelay: `0.8s` }}
-                        className={`chat-item ${msg.name === 'admin' ? "me" : "other"}`}>
+                        className={`chat-item ${msg.name === 'Admin' ? "me" : "other"}`}>
                         <div className="chat-item-content">
                           <strong>{`${msg.name}: `}</strong>
                           <div className="chat-msg"> {msg.body} </div>
